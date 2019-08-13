@@ -1,0 +1,64 @@
+#CNS-FILE
+
+succession_laws = {
+	succ_open_elective_clergyless_temple = {
+		potential = {
+			holder_scope = {
+				government = clergyless_temple_government
+				capital_holding = { holding_type = temple }
+			}
+		}
+		effect = {
+			succession = open_elective
+		}
+		revoke_allowed = {
+			always = no
+		}
+	}
+	succ_agnatic_clergyless_temple = {
+		potential = {
+			holder_scope = {
+				government = clergyless_temple_government
+				capital_holding = { holding_type = temple }
+				religion_allows_male_temple_holders = yes
+			}
+		}
+		effect = {
+			gender_succ = agnatic
+		}
+		revoke_allowed = {
+			always = no
+		}
+	}
+	succ_cognatic_clergyless_temple = {
+		potential = {
+			holder_scope = {
+				government = clergyless_temple_government
+				capital_holding = { holding_type = temple }
+				religion_allows_male_temple_holders = yes
+				religion_allows_female_temple_holders = yes
+			}
+		}
+		effect = {
+			gender_succ = true_cognatic
+		}
+		revoke_allowed = {
+			always = no
+		}
+	}
+	succ_enatic_clergyless_temple = {
+		potential = {
+			holder_scope = {
+				government = clergyless_temple_government
+				capital_holding = { holding_type = temple }
+				religion_allows_female_temple_holders = yes
+			}
+		}
+		effect = {
+			gender_succ = enatic
+		}
+		revoke_allowed = {
+			always = no
+		}
+	}
+}

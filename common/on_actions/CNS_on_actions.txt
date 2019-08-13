@@ -1,0 +1,38 @@
+#CNS-FILE
+
+on_startup = {
+	events = {
+		CNS.1  #SEE CNS_maintenance_events.txt: new campaign, set up clergyless religion flags and governments.
+	}
+}
+
+on_new_holder = {
+	events = {
+		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+	}
+}
+
+on_new_holder_inheritance = {
+	events = {
+		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+	}
+}
+
+on_new_holder_usurpation = {
+	events = {
+		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+	}
+}
+
+on_reform_religion = {
+	events = {
+		CNS.5  #SEE CNS_maintenance_events.txt: if the reformer has the flag cns_destroy_religious_head, do just that.
+	}
+}
+
+on_character_convert_religion = {
+	events = {
+		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+
+	}
+}

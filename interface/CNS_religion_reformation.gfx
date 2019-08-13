@@ -1,0 +1,8 @@
+#CNS-FILE
+
+spriteTypes = {
+        spriteType = {
+                name = "GFX_religion_feature_clergyless"
+                texturefile = "gfx\\interface\\reformation\\religion_feature_clergyless.dds"  # based on vanilla gfx event_pictures/pagan_reformation.dds
+        }
+}

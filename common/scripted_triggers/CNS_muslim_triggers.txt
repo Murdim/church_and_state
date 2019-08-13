@@ -1,0 +1,11 @@
+#CNS-FILE
+# Muslims are assumed to use the iqta government and jizya tax, which make them ineligible to the features of this mod.
+# If a Muslim group religion lacks either or both of these, register them by adding NOT clauses to the following triggers.
+
+cns_religion_uses_iqta = {  # Adding an exception makes Non-Clerical available as a doctrine choice.
+	religion_group = muslim
+}
+
+cns_religion_uses_jizya = {  # Adding an exception enables secular government if already clergyless and Cosmopolitan.
+	religion_group = muslim
+}

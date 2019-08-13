@@ -1,0 +1,141 @@
+#CNS-FILE
+
+namespace = CNS  #0-99
+
+character_event = {  # On starting a new campaign. ROOT = character controlled by the game host (in MP) or player.
+	id = CNS.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	only_playable = yes
+	ai = no
+
+	trigger = {
+		is_multiplayer_host_character = yes
+		is_save_game = no
+	}
+
+	immediate = {
+		if = {
+			limit = { NOT = { has_alternate_start_parameter = { key = religion_names value = random } } }
+			cns_set_clergyless_religion_flags = yes  #SEE CNS_maintenance_effects.txt
+		}
+		any_character = {
+			limit = {
+				is_ruler = yes
+				cns_ruler_should_use_clergyless_government = yes  #SEE CNS_government_triggers.txt
+			}
+			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
+			if = {  # Baron-tier temple holders use Open Elective.
+				limit = { government = clergyless_temple_government }
+				character_event = { id = CNS.4 }
+			}
+		}
+	}
+}
+
+character_event = {  # On conversion or title gain. ROOT = character.
+	id = CNS.2
+	is_triggered_only = yes
+	hide_window = yes
+	only_rulers = yes
+
+	trigger = {
+		OR = {  # Fires for rulers that are OR should be using a clergyless government.
+			cns_ruler_should_use_clergyless_government = yes  #SEE CNS_government_triggers.txt
+			cns_ruler_is_not_using_clergyless_government = no
+		}
+	}
+
+	immediate = {
+		if = {
+			limit = { cns_ruler_should_use_clergyless_government = yes }
+			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
+			character_event = { id = CNS.3 days = 1 }  # Check the next day to fix anything that was messed up by hardcoded behavior.
+		}
+		else = {
+			cns_ruler_change_government_from_clergyless = yes  #SEE CNS_maintenance_effects.txt
+		}
+	}
+}
+
+character_event = {  # ROOT = character that should already have been switched to a clergyless government yesterday.
+	id = CNS.3
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = { cns_ruler_should_use_clergyless_government = yes }  #SEE CNS_government_triggers.txt
+			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
+		}
+		if = {
+			limit = { government = clergyless_temple_government }
+			character_event = { id = CNS.4 days = 2 }  # 2 days after the 2nd try to work around forced Turkish succession.
+		}
+	}
+}
+
+character_event = {  # ROOT = Baron-tier clergyless temple holder, adapt their gender law to those of the religion.
+	id = CNS.4
+	is_triggered_only = yes
+	hide_window = yes
+	only_rulers = yes
+
+	immediate = {
+		any_demesne_title = {
+			limit = {
+				is_law_potential = succ_open_elective_clergyless_temple
+				holding_type = temple
+			}
+			add_law = succ_open_elective_clergyless_temple
+			if = {
+				limit = { ROOT = { religion_allows_female_temple_holders = no } }
+				add_law = succ_agnatic_clergyless_temple
+			}
+			else_if = {
+				limit = { ROOT = { religion_allows_male_temple_holders = no } }
+				add_law = succ_enatic_clergyless_temple
+			}
+			else = {  # Will generally be succeeded by someone of the same gender.
+				random_list = {
+					3 = {  # This will also prevent the spouse from almost always inheriting...
+						if = {
+							limit = { ROOT = { is_female = yes } }
+							add_law = succ_enatic_clergyless_temple
+						} else = {
+							add_law = succ_agnatic_clergyless_temple
+						}
+					}
+					1 = {
+						add_law = succ_cognatic_clergyless_temple
+					}
+				}
+			}
+		}
+	}
+}
+
+character_event = {  # On reformation with Non-Clerical, ROOT = reformer
+	id = CNS.5
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = { has_religion_feature = religion_clergyless }
+
+	immediate = {
+		clr_flag = clergyless_religion  # This should NOT be on a feature-using religion; remove it, just in case.
+		if = {  # If combined with Autocephaly, destroy the religious head title given to the reformer.
+			limit = { has_flag = cns_destroy_religious_head }
+			clr_flag = cns_destroy_religious_head
+			any_demesne_title = {
+				limit = { controls_religion = yes }
+				unsafe_destroy_landed_title = THIS
+				activate_title = { title = THIS status = no }
+			}
+		}
+	}
+}

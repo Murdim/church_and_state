@@ -1,0 +1,124 @@
+#CNS-FILE
+
+religion_doctrine = {
+	religion_clergyless = {
+		picture = GFX_religion_feature_clergyless
+		potential = {
+			cns_religion_compatible_with_clergyless = yes  #SEE CNS_religion_feature_triggers.txt
+			OR = {
+				has_game_started = no
+				has_game_rule = { name = cns_religions value = doctrine }
+				AND = {
+					has_game_rule = { name = cns_religions value = both }
+					NOT = { has_tag = clergyless_religion }
+				}
+			}
+		}
+		trigger = {
+			cns_religion_features_compatible_with_clergyless = yes  #SEE CNS_religion_feature_triggers.txt
+			OR = {
+				cns_religion_features_compatible_with_clergyless_no_head_priest = yes
+				cns_religion_features_head_priest_even_with_clergyless = yes
+			}
+		}
+		effect = {
+			custom_tooltip = { text = tooltip_religion_feature_clergyless_feudal_government }
+			if = {
+				limit = { has_game_started = yes }
+				custom_tooltip = { text = tooltip_religion_feature_no_theocracy_except_theocratic_head }
+			}
+			else = {
+				custom_tooltip = { text = tooltip_religion_feature_no_theocracy }
+			}
+			if = {  # Destroy the religious head title unless it is temporal or EXPLICTLY hierocratic.
+				limit = {
+					NOR = {
+						random_character = {  # A temporal religious head ALREADY exists.
+							limit = { religion = ROOT }
+							religion_head = { is_theocracy = no }
+						}
+						has_selected_religion_feature = religion_temporal_head
+						has_selected_religion_feature = religion_theocratic_head
+					}
+				}
+				if = {  # If the religious head does not change, find them if they exist, and destroy their title.
+					limit = { has_selected_religion_feature = religion_leader_unchanged }
+					random_character = {
+						limit = { religion = ROOT }
+						show_scope_change = no
+						religion_head = {
+							show_scope_change = no
+							custom_tooltip = { text = tooltip_religion_feature_head_is_destroyed }
+							hidden_tooltip = {
+								any_demesne_title = {
+									limit = { controls_religion = yes }
+									unsafe_destroy_landed_title = THIS
+									activate_title = { title = THIS status = no }
+								}
+							}
+						}
+					}
+				}
+				else = {  # Otherwise, give the title to FROM so we can destroy it (CNS.5).
+					make_reformer_head_of_religion = yes
+					FROM = { set_flag = cns_destroy_religious_head }
+				}
+				# set_religion_head = none would turn autocephalous religions into autonomous ones.
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_alternate_start_parameter = { key = clergyless_religions_random value = excluded }
+			}
+			modifier = {  # Should be rare in Random Worlds.
+				factor = 0.2
+				has_game_started = no
+			}
+			modifier = {  # Avoid poor synergies + bugged trigger on AI reformation w/ autonomous leadership.
+				factor = 0
+				cns_religion_features_compatible_with_clergyless_no_head_priest = no
+			}
+			modifier = {
+				factor = 0
+				FROM = {
+					character = yes
+					is_theocracy = yes
+				}
+			}
+			modifier = {  # Much more likely if the unreformed religion already is clergyless...
+				factor = 5
+				FROM = {
+					character = yes
+					cns_religion_uses_clergyless_government = yes
+				}
+			}
+			modifier = {  # ... but non-feudal reformers, including tribals, will usually choose to establish a clergy.
+				factor = 0.1
+				FROM = {
+					character = yes
+					cns_religion_uses_clergyless_government = yes
+					is_feudal = no
+				}
+			}
+			modifier = {  # Otherwise, mostly an option for feudal reformers that are either cynical or theologically inclined.
+				factor = 0.1
+				FROM = {
+					character = yes
+					NOT = { cns_religion_uses_clergyless_government = yes } 
+					OR = {
+						is_feudal = no
+						NOR = {                  # We should abolish the priesthood because...
+							trait = cynical  # ... they are useless, sanctimonious parasites.
+							trait = mystic   # ... everyone can hold religious authority, and mine is as legitimate as theirs.
+							trait = theologian
+							trait = scholarly_theologian
+							trait = mastermind_theologian
+						}
+					}
+				}
+			}
+		}
+	}
+}

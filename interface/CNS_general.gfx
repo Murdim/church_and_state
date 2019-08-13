@@ -1,0 +1,74 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_icon_clergyless_feudal_government"
+		texturefile = "gfx\\interface\\government_icon_clergyless_feudal.dds"
+	} 
+	spriteType = {
+		name = "GFX_icon_clergyless_temple_government"
+		texturefile = "gfx\\interface\\government_icon_clergyless_feudal.dds"
+	} 
+	spriteType = {
+		name = "GFX_icon_secular_feudal_government"
+		texturefile = "gfx\\interface\\government_icon_secular_feudal.dds"
+	} 
+	spriteType = {
+		name = "GFX_charframe_150_clergyless"
+		texturefile = "gfx\\interface\\charframe_150_clergyless.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_100_clergyless"
+		texturefile = "gfx\\interface\\charframe_100_clergyless.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_75_clergyless"
+		texturefile = "gfx\\interface\\charframe_75_clergyless.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_50_clergyless"
+		texturefile = "gfx\\interface\\charframe_50_clergyless.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_34_clergyless"
+		texturefile = "gfx\\interface\\charframe_34_clergyless.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_150_secular"
+		texturefile = "gfx\\interface\\charframe_150_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_100_secular"
+		texturefile = "gfx\\interface\\charframe_100_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_75_secular"
+		texturefile = "gfx\\interface\\charframe_75_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_50_secular"
+		texturefile = "gfx\\interface\\charframe_50_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_34_secular"
+		texturefile = "gfx\\interface\\charframe_34_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+}

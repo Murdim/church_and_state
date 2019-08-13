@@ -1,0 +1,26 @@
+#CNS-FILE
+
+cns_religions = {
+	name = "RULE_CNS_RELIGIONS"
+	group = "RULE_GROUP_CNS"
+	option = {
+		name = both
+		text = "RULE_OPTION_BOTH"
+		desc = "RULE_CNS_RELIGIONS_BOTH"
+	}
+	option = {
+		name = doctrine
+		text = "RULE_OPTION_DOCTRINE"
+		desc = "RULE_CNS_RELIGIONS_DOCTRINE"
+	}
+	option = {
+		name = tagged
+		text = "RULE_OPTION_STATIC"
+		desc = "RULE_CNS_RELIGIONS_STATIC"
+	}
+	option = {
+		name = off
+		text = "RULE_OPTION_OFF"
+		desc = "RULE_CNS_RELIGIONS_OFF"
+	}
+}

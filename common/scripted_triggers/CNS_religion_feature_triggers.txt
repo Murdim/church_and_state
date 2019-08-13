@@ -1,0 +1,57 @@
+#CNS-FILE
+# Follow these instruction to ensure compatibility with OR without this mod.
+# Undefined triggers will return false/no when used, while extended triggers will simply go unused.
+# On the other hand, directly testing for game entities that do not exist might cause crashes, especially when it causes tooltip creation to fail.
+
+# Features that require an theocratic clergy to function properly are incompatible with this mod and should be registered here.
+# Extend this trigger with an appropriate NOT clause, then add the following line to the feature's own trigger condition:
+# cns_religion_features_clergyless = no  #MOD church_and_state CNS_religion_feature_triggers.txt
+cns_religion_features_compatible_with_clergyless = { }
+
+# Features that can work without a proper clergy but do require a priestly religious head should be registered here.
+# Extend this trigger with an appropriate NOT clause, then add the following line to the feature's own trigger condition:
+# cns_religion_features_clergyless_no_priest = no  #MOD church_and_state CNS_religion_feature_triggers.txt
+cns_religion_features_compatible_with_clergyless_no_head_priest = { }
+
+cns_religion_features_clergyless = {
+	OR = {
+		has_selected_religion_feature = religion_clergyless
+		cns_religion_uses_clergyless_government = yes
+	}
+}
+
+cns_religion_features_clergyless_no_priest = {
+	cns_religion_features_clergyless = yes
+	cns_religion_features_head_priest_even_with_clergyless = no
+}
+
+cns_religion_features_head_priest_even_with_clergyless = {
+	OR = {
+		has_selected_religion_feature = religion_theocratic_head
+		has_selected_religion_feature = religion_autocephaly
+		conditional_tooltip = {
+			trigger = { has_selected_religion_feature = religion_leader_unchanged }
+			cns_religion_is_not_autocephalous = no
+		}
+	}
+}
+
+cns_religion_is_not_autocephalous = {
+	NOR = {
+		religion = orthodox
+		religion = monothelite
+		religion = iconoclast
+		religion = paulician
+		religion = miaphysite
+		religion = monophysite
+	}
+}
+
+cns_religion_compatible_with_clergyless = {  # Extend this to prevent religions from picking the Non-Clerical doctrine.
+	NOR = {
+		religion = catholic  # Papal succession requires a proper priesthood.
+		religion = fraticelli
+		religion = hindu  # Caste system.
+		cns_religion_uses_iqta = yes  #SEE CNS_muslim_triggers.txt: functionally almost identical.
+	}
+}

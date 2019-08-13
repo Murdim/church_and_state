@@ -1,0 +1,88 @@
+#CNS-FILE
+
+# They should not be applied to religions that do not work properly without a clergy, or that are already clergyless from another mechanic.
+
+cns_religion_uses_clergyless_government = {
+	conditional_tooltip = {
+		trigger = {
+			has_game_rule = {
+				name = cns_religions
+				value = both
+			}
+		}
+		OR = {
+			has_religion_feature = religion_clergyless
+			religion_scope = { has_flag = clergyless_religion }
+			has_flag = clergyless_religion
+		}
+	}
+	conditional_tooltip = {
+		trigger = {
+			has_game_rule = {
+				name = cns_religions
+				value = doctrine
+			}
+		}
+		has_religion_feature = religion_clergyless
+	}
+	conditional_tooltip = {
+		trigger = {
+			has_game_rule = {
+				name = cns_religions
+				value = static
+			}
+		}
+		OR = {
+			religion_scope = { has_flag = clergyless_religion }
+			has_flag = clergyless_religion
+		}
+	}
+	conditional_tooltip = {
+		trigger = {
+			has_game_rule = {
+				name = cns_religions
+				value = off
+			}
+		}
+		NOT = {
+			has_game_rule = {
+				name = cns_religions
+				value = off
+			}
+		}
+	}
+}
+
+cns_ruler_should_use_clergyless_government = {
+	cns_religion_uses_clergyless_government = yes
+	is_tribal = no
+	is_nomadic = no
+	OR = {
+		NOR = {
+			is_theocracy = yes
+			capital_holding = { holding_type = temple }
+		}
+		NOR = {  # Exclude theocratic religious heads and their realms.
+			controls_religion = yes
+			any_liege = {
+				is_theocracy = yes
+				controls_religion = yes
+			}
+		}
+	}
+}
+
+cns_ruler_is_not_using_clergyless_government = {  # Extend this with any other clergyless government type.
+	NOT = { government = clergyless_feudal_government }
+	NOT = { government = clergyless_temple_government }
+}
+
+cns_religion_compatible_with_secular_government = {
+	has_religion_feature = religion_cosmopolitan
+	# Cosmopolitan temporal heads are iffy, but let's assume that "Mandate of Heaven"-style posturing is acceptable.
+	NOR = {  # On the other hand, an infidel tax is anything BUT secular.
+		has_religion_feature = religion_jizya
+		has_religion_feature = religion_feature_west_african
+		cns_religion_uses_jizya = yes  #SEE CNS_muslim_triggers.txt
+	}
+}

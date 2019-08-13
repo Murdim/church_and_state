@@ -1,0 +1,63 @@
+#CNS-FILE
+
+# The clergyless_religion flag adds the effect of Non-Clerical to non-reformed, non-randomized religions. Do NOT use it on religions that use features.
+cns_set_clergyless_religion_flags = {  # Will NOT destroy the religious head if it exists, or prevent one from being created.
+	lollard = { set_flag = clergyless_religion }
+	waldensian = { set_flag = clergyless_religion }
+	jewish = { set_flag = clergyless_religion }
+	karaite = { set_flag = clergyless_religion }
+}
+
+cns_ruler_change_government_to_clergyless = {
+	if = {
+		limit = {
+			OR = {
+				government = feudal_government
+				government = muslim_government
+				government = theocracy_government
+			}
+		}
+		if = {
+			limit = {
+				tier = BARON
+				capital_holding = { holding_type = temple }
+				NOT = { dynasty_head = { higher_tier_than = BARON } }
+			}
+			set_government_type = clergyless_temple_government
+		} else_if = {
+			limit = {
+				cns_religion_compatible_with_secular_government = yes
+			}
+			set_government_type = secular_feudal_government
+		}
+		else = {
+			set_government_type = clergyless_feudal_government
+		}
+	}
+}
+
+cns_ruler_change_government_from_clergyless = {
+	if = {
+		limit = {
+			OR = {
+				government = clergyless_feudal_government
+				government = clergyless_temple_government
+				government = secular_feudal_government
+			}
+		}
+		if = {  # Baron-tier temple rulers become theocracies if possible.
+			limit = {
+				government = clergyless_temple_government
+				is_government_potential = theocracy_government
+			}
+			set_government_type = theocracy_government
+		}
+		else_if = {  # If Muslim, set to Iqta.
+			limit = { is_government_potential = muslim_government }
+			set_government_type = muslim_government
+		}
+		else = {  # Otherwise, set to Feudal; if this is somehow wrong, the game will fix it on its own.
+			set_government_type = feudal_government
+		}
+	}
+}
