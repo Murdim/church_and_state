@@ -3,6 +3,7 @@
 on_startup = {
 	events = {
 		CNS.1  #SEE CNS_maintenance_events.txt: new campaign, set up clergyless religion flags and governments.
+		CNS.100  #SEE CNS_government_opinion_events.txt: start applying liege government opinion penalties every month.
 	}
 }
 
@@ -33,6 +34,11 @@ on_reform_religion = {
 on_character_convert_religion = {
 	events = {
 		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+	}
+}
 
+on_employer_change = {
+	events = {
+		CNS.6  #SEE CNS_maintenance_events.txt:
 	}
 }

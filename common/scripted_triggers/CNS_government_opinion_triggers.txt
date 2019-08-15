@@ -1,0 +1,67 @@
+#CNS-FILE
+#TODO liege_opinion works the wrong way in triggered modifiers, implement it with events and opinion modifiers.
+# Governments that use this compatibility mechanic should disable the vanilla version TOWARDS them with vassal_government_opinion_penalties = no.
+# They still need to define accepts_liege_governments, which determines THEIR compatibility as vassals of vanilla governments.
+# Can be extended in a new file for more governments, using the following format.
+
+# File name: XXX_CNS_government_opinion_triggers_extended.txt
+# cns_uses_vanilla_government_opinion_penalty = {
+#	NOT = { government = new_government }
+# }
+# cns_liege_rejects_prev_government = {
+#	NAND = {
+#		PREV = { government = new_government }
+#		cns_vassal_accepts_prev_new_government = yes
+#	}
+# }
+# cns_vassal_accepts_prev_new_government = {
+#	OR = {
+#		cns_government_group_based_liege_acceptance = no
+#		# List all GROUPS (is_feudal, is_theocracy, etc.) that should generally accept a new_government liege.
+#		# More conditions can be added by wrapping it inside an AND block, e.g for is_tribal, also check that culture = PREV.
+#	}
+#	# Add exceptions that match the group-level condition, but should NOT accept new_government as liege.
+# }
+
+cns_uses_vanilla_government_opinion_penalty = {
+	NOT = { government = clergyless_feudal_government }
+	NOT = { government = secular_feudal_government }
+}
+
+cns_vassal_rejects_prev_government = {
+	NAND = {
+		PREV = { government = clergyless_feudal_government }
+		cns_vassal_accepts_prev_clergyless_feudal_government = yes
+	}
+	NAND = {
+		PREV = { government = secular_feudal_government }
+		cns_vassal_accepts_prev_secular_feudal_government = yes
+	}
+}
+
+# Extend this to have a government accept all lieges by default, regardless of its own group.
+cns_government_group_based_liege_acceptance = { }
+
+cns_vassal_accepts_prev_clergyless_feudal_government = {
+	OR = {
+		cns_government_group_based_liege_acceptance = no
+		is_feudal = yes
+		AND = {
+			is_tribal = yes
+			culture = PREV
+		}
+	}
+	NOT = { government = order_government }
+}
+
+cns_vassal_accepts_prev_secular_feudal_government = {
+	OR = {
+		cns_government_group_based_liege_acceptance = no
+		is_feudal = yes
+		AND = {
+			is_tribal = yes
+			culture = PREV
+		}
+	}
+	NOT = { government = order_government }
+}

@@ -1,0 +1,47 @@
+#CNS-FILE
+
+namespace = CNS  #100-199
+
+character_event = {  # On session start. ROOT = character controlled by the game host (in MP) or player.
+	id = CNS.100
+	is_triggered_only = yes
+	hide_window = yes
+
+	only_playable = yes
+	ai = no
+
+	trigger = {
+		is_multiplayer_host_character = yes
+		NOT = { has_global_flag = cns_applied_wrong_government_opinions }
+	}
+
+	immediate = {
+		1 = { province_event = { id = CNS.101 } }
+	}
+}
+
+province_event = {
+	id = CNS.101
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		set_global_flag = cns_applied_wrong_government_opinions  # Make sure this event ACTUALLY fired.
+		any_playable_ruler = {
+			limit = {
+				higher_tier_than = COUNT
+				cns_uses_vanilla_government_opinion_penalty = no
+			}
+			any_vassal = {
+				limit = {
+					higher_tier_than = BARON
+					NOT = { government = PREV }
+					cns_vassal_rejects_prev_government = yes
+				}
+				remove_opinion = { who = PREV modifier = cns_wrong_government }
+				opinion = { who = PREV modifier = cns_wrong_government }
+			}
+		}
+		repeat_event = { id = CNS.101 months = 1 }  # Repeat every month.
+	}
+}

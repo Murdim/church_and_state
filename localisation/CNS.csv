@@ -17,6 +17,8 @@ clergylesstemple_baron_jewish_group;Hakham;;;;;;;;;;;;;x
 clergylesstemple_baron_female_jewish_group;Hakhama;;;;;;;;;;;;;x
 clergylesstemple_baron_jewish;Rabbi;Rabbin;Rabbiner;;Rabino;;;;;;;;;x
 clergylesstemple_baron_female_jewish;Rabbanit;Rabbine;;;;;;;;;;;;x
+# common/opinion_modifiers/CNS_opinion_modifiers.txt
+cns_wrong_government;Wrong Government Type;Mauvais type de gouvernement;Falsche Regierungsform;;Tipo de gobierno erróneo;;;;;;;;;x
 # common/religion_features/CNS_features.txt
 religion_clergyless;Non-Clerical;Non-clérical;;;;;;;;;;;;x
 religion_clergyless_desc;It is everyone's duty and privilege to reach out to the Divine and fulfill its will. There is no need for a priestly class.;Tendre vers le Divin et accomplir Sa volonté est un devoir et un privilège pour tous, et non juste une élite de prêtres.;;;;;;;;;;;;x
@@ -25,14 +27,9 @@ tooltip_religion_feature_no_theocracy;§YThis religion will never produce Theocra
 tooltip_religion_feature_no_theocracy_except_theocratic_head;§YThis religion will produce no Theocracies, except for Hierocratic heads and their vassals.§!;§YCette religion ne produira pas de théocraties autres qu'un chef Hiérocratique et ses vassaux.§!;;;;;;;;;;;;x
 tooltip_religion_feature_head_is_destroyed;§YThe religious head title is disabled.§!;§YLe titre de chef religieux est désactivé.§!;;;;;;;;;;;;x
 # Overrides
-GOV_NO_VASSAL_GOVERNMENT_PENALTIES_DESC;Does not get opinion penalties with vassals of other government types;N'obtient pas de pénalité relationnelle avec les vassaux d'autres types de gouvernement;Erhält keine Meinungsabzüge bei Vasallen mit anderer Regierungsform;;No tiene penalizaciones de opinión con vasallos de otros tipos de gobierno;;;;;;;;;x
 temple_baron_jewish_group;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_jewish;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_karaite;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_samaritan;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_count_jewish_group;Rabban;Rabbi;Rabban;;Rabban;;;;;;;;;x
 temple_duke_jewish_group;Nasi;Nassi;Nasi;;Nasi;;;;;;;;;x
-temple_barony_christian;Bishopric;Évêché;Abtei;;Obispado;;;;;;;;;x
-temple_barony_of_christian;Bishopric of;Évêché de;Abtei von;;Obispado de;;;;;;;;;x
-temple_barony_christian_default;Bishopric;Évêché;Abtei;;Obispado;;;;;;;;;x
-temple_barony_of_christian_default;Bishopric of;Évêché de;Abtei von;;Obispado de;;;;;;;;;x

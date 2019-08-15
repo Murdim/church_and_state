@@ -1,6 +1,6 @@
 #CNS-FILE
 # Follow these instruction to ensure compatibility with OR without this mod.
-# Undefined triggers will return false/no when used, while extended triggers will simply go unused.
+# Undefined triggers return false when used REGARDLESS of the right-hand side (yes/no), while extended triggers will simply go unused.
 # On the other hand, directly testing for game entities that do not exist might cause crashes, especially when it causes tooltip creation to fail.
 
 # Features that require an theocratic clergy to function properly are incompatible with this mod and should be registered here.

@@ -1,0 +1,6 @@
+#CNS-FILE
+
+cns_wrong_government = {
+	opinion = -20
+	months = 1
+}
