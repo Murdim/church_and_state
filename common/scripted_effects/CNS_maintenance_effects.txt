@@ -4,8 +4,22 @@
 cns_set_clergyless_religion_flags = {  # Will NOT destroy the religious head if it exists, or prevent one from being created.
 	lollard = { set_flag = clergyless_religion }
 	waldensian = { set_flag = clergyless_religion }
-	jewish = { set_flag = clergyless_religion }
+	paulician = { set_flag = clergyless_religion }  # The Paulician Patriarchate is also deactivated, see below.
+	jewish = { set_flag = clergyless_religion }  # After restoring the Kohen Gadol, works similar to Hierocratic Non-Clerical pagans.
 	karaite = { set_flag = clergyless_religion }
+}
+
+# If you want to destroy a religious head title, do it here instead, for the sake of clarity. They will still exist on randomized starts.
+cns_deactivate_religion_heads = {
+	if = {  # Religions flagged as clergyless CAN have a theocratic head, but Pauliciens definitely shouldn't.
+		limit = { paulician = { has_flag = clergyless_religion } }
+		unsafe_destroy_landed_title = d_paulician
+		activate_title = { title = d_paulician status = no }
+		paulician = {
+			set_religion_head = none
+			set_pentarchy = no  # Even autocephaly is a bit of a stretch, though a convenient one.
+		}
+	}
 }
 
 cns_ruler_change_government_to_clergyless = {
