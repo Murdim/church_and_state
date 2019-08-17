@@ -99,17 +99,17 @@ character_event = {  # ROOT = Baron-tier clergyless temple holder, apply success
 	immediate = {
 		any_demesne_title = {
 			limit = { holding_type = temple }
-			add_law = succ_open_elective_clergyless_temple
+			add_law = { law = succ_open_elective_clergyless_temple opinion_effect = no }
 			if = {
 				limit = { ROOT = { religion_allows_female_temple_holders = no } }
-				add_law = succ_agnatic_clergyless_temple
+				add_law = { law = succ_agnatic_clergyless_temple opinion_effect = no }
 			}
 			else_if = {
 				limit = { ROOT = { religion_allows_male_temple_holders = no } }
-				add_law = succ_enatic_clergyless_temple
+				add_law = { law = succ_enatic_clergyless_temple opinion_effect = no }
 			}
 			else = {
-				add_law = succ_cognatic_clergyless_temple
+				add_law = { law = succ_cognatic_clergyless_temple opinion_effect = no }
 			}
 		}
 		any_courtier = {
