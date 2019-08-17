@@ -79,10 +79,19 @@ cns_character_set_guardian_hidden_modifiers = {
 	}
 	else_if = {
 		limit = { has_flag = cns_guardian_generic }
-		add_character_modifier = {
-			modifier = cns_guardian_generic
-			duration = -1
-			hidden = yes
+		if = {  # Non-Hijaz Guardians from the Muslim group still use the Hafiz modifier.
+			limit = { religion_group = muslim }
+			add_character_modifier = {
+				modifier = cns_hafiz
+				duration = -1
+				hidden = yes
+			}
+		} else = {
+			add_character_modifier = {
+				modifier = cns_guardian_generic
+				duration = -1
+				hidden = yes
+			}
 		}
 		clr_flag = cns_guardian_inactive
 	}

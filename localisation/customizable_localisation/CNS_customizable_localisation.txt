@@ -28,6 +28,10 @@ defined_text = {
 		localisation_key = guardian_desc_torah
 	}
 	text = {
+		trigger = { religion_group = muslim }  # Muslim group but not Hafiz: generic description with Muslim modifiers.
+		localisation_key = guardian_desc_generic_muslim
+	}
+	text = {
 		trigger = { cns_religion_scripture_is_legends = yes }
 		localisation_key = guardian_desc_generic_legends
 	}
