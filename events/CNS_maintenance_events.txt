@@ -16,9 +16,10 @@ character_event = {  # On starting a new campaign. ROOT = character controlled b
 	}
 
 	immediate = {
-		if = {
-			limit = { NOT = { has_alternate_start_parameter = { key = religion_names value = random } } }
+		if = {  # Flag the appropriate religions as clergyless unless their FEATURES are randomized; names do not matter either way.
+			limit = { NOT = { has_alternate_start_parameter = { key = religion_features value = random } } }
 			cns_set_clergyless_religion_flags = yes  #SEE CNS_maintenance_effects.txt
+			cns_deactivate_religion_heads = yes
 		}
 		any_character = {
 			limit = {
@@ -119,24 +120,13 @@ character_event = {  # ROOT = Baron-tier clergyless temple holder, apply success
 	}
 }
 
-character_event = {  # On reformation with Non-Clerical, ROOT = reformer
+character_event = {  # On reformation, ROOT = reformer
 	id = CNS.5
 	is_triggered_only = yes
 	hide_window = yes
 
-	trigger = { has_religion_feature = religion_clergyless }
-
-	immediate = {
+	immediate = {  # Nothing to do after selecting Non-Clerical, rulers will already adapt their government on conversion.
 		clr_flag = clergyless_religion  # This should NOT be set on a feature-using religion; remove it, just in case.
-		if = {  # If combined with Autocephaly, destroy the religious head title given to the reformer.
-			limit = { has_flag = cns_destroy_religious_head }
-			clr_flag = cns_destroy_religious_head
-			any_demesne_title = {
-				limit = { controls_religion = yes }
-				unsafe_destroy_landed_title = THIS
-				activate_title = { title = THIS status = no }
-			}
-		}
 	}
 }
 

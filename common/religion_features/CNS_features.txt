@@ -21,7 +21,7 @@ religion_doctrine = {
 				cns_religion_features_head_priest_even_with_clergyless = yes
 			}
 		}
-		effect = {
+		effect = {  # Destroy / do not create the religious head title unless it is temporal or EXPLICTLY hierocratic.
 			custom_tooltip = { text = tooltip_religion_feature_clergyless_feudal_government }
 			if = {
 				limit = { has_game_started = yes }
@@ -30,41 +30,38 @@ religion_doctrine = {
 			else = {
 				custom_tooltip = { text = tooltip_religion_feature_no_theocracy }
 			}
-			if = {  # Destroy the religious head title unless it is temporal or EXPLICTLY hierocratic.
+			if = {  # If the religious head is already supposed to exist, find them and destroy their title.
 				limit = {
-					NOR = {
-						random_character = {  # A temporal religious head ALREADY exists.
+					has_selected_religion_feature = religion_leader_unchanged
+					NOT = {  # Exclude temporal heads.
+						random_character = {
 							limit = { religion = ROOT }
 							religion_head = { is_theocracy = no }
 						}
-						has_selected_religion_feature = religion_temporal_head
-						has_selected_religion_feature = religion_theocratic_head
 					}
 				}
-				if = {  # If the religious head does not change, find them if they exist, and destroy their title.
-					limit = { has_selected_religion_feature = religion_leader_unchanged }
-					random_character = {
-						limit = { religion = ROOT }
+				random_character = {
+					limit = { religion = ROOT }
+					show_scope_change = no
+					religion_head = {
 						show_scope_change = no
-						religion_head = {
-							show_scope_change = no
-							custom_tooltip = { text = tooltip_religion_feature_head_is_destroyed }
-							hidden_tooltip = {
-								any_demesne_title = {
-									limit = { controls_religion = yes }
-									unsafe_destroy_landed_title = THIS
-									activate_title = { title = THIS status = no }
-								}
+						custom_tooltip = { text = tooltip_religion_feature_head_is_destroyed }
+						hidden_tooltip = {
+							any_demesne_title = {
+								limit = { controls_religion = yes }
+								unsafe_destroy_landed_title = THIS
+								activate_title = { title = THIS status = no }
 							}
 						}
 					}
 				}
-				else = {  # Otherwise, give the title to FROM so we can destroy it (CNS.5).
-					make_reformer_head_of_religion = yes
-					FROM = { set_flag = cns_destroy_religious_head }
-				}
-				# set_religion_head = none would turn autocephalous religions into autonomous ones.
+				set_religion_head = none
 			}
+			else_if = {  # If reforming into Autocephaly, do not activate the top religious head.
+				limit = { has_selected_religion_feature = religion_autocephaly }
+				set_religion_head = none
+			}
+			set_pentarchy = no  # Requires priest temple holders to function properly.
 		}
 		ai_will_do = {
 			factor = 1

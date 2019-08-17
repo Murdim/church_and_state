@@ -42,7 +42,7 @@ on_new_holder_usurpation = {
 
 on_reform_religion = {
 	events = {
-		CNS.5  #SEE CNS_maintenance_events.txt: if the reformer has the flag cns_destroy_religious_head, do just that.
+		CNS.5  #SEE CNS_maintenance_events.txt: clear clergyless_religion flag.
 	}
 }
 
