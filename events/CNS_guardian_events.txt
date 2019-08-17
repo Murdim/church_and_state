@@ -1,0 +1,345 @@
+#CNS-FILE
+
+namespace = CNS  #200-299
+
+character_event = {  # Randomy on five year pulse. ROOT = character.
+	id = CNS.200
+	desc = EVTDESCCNS200
+	picture = GFX_evt_monk
+	border = GFX_event_normal_frame_religion
+	
+	min_age = 12
+	capable_only = yes
+	prisoner = no
+	
+	is_triggered_only = yes
+	
+	trigger = {
+		cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+		OR = {  # Pagans need to reform and organize their scriptures.
+			NOT = { religion_group = pagan_group }
+			is_reformed_religion = yes
+		}
+		NOR = {
+			trait = hafiz
+			trait = inbred
+			trait = infirm
+			is_dumb_trigger = yes
+			has_character_modifier = aspiring_hafiz
+		}
+		cns_religion_uses_hafiz = no  #SEE CNS_guardian_triggers.txt
+	}
+	
+	weight_multiplier = {
+		days = 1
+		
+		modifier = {
+			factor = 10
+			government = clergyless_temple_government
+		}
+		modifier = {
+			factor = 3
+			is_ruler = no
+			liege = {
+				government = clergyless_temple_government
+				religion = ROOT
+			}
+		}
+		modifier = {
+			factor = 3
+			has_focus = focus_ed_learning
+		}
+		modifier = {
+			factor = 0.25
+			NOR = {
+				age = 16
+				has_focus = focus_ed_learning
+			}
+		}
+		modifier = {
+			factor = 1.7
+			has_education_learning_trigger = yes
+		}
+		modifier = {
+			factor = 1.7
+			OR = {
+				has_education_lifestyle_trigger = yes
+				has_focus = focus_theology
+			}
+		}
+		modifier = {
+			factor = 1.7
+			OR = {
+				trait = zealous
+				trait = idolizer
+			}
+		}
+		modifier = {
+			factor = 0.5
+			trait = cynical
+		}
+	}
+
+	option = {
+		name = EVTOPTACNS200
+		add_character_modifier = {
+			name = aspiring_hafiz
+			duration = -1
+		}
+		if = {
+			limit = {
+				AND = {
+					is_smart_trigger = yes
+					OR = {
+						has_education_learning_trigger = yes
+						has_focus = focus_ed_learning
+						has_education_lifestyle_trigger = yes
+						has_focus = focus_theology
+					}
+				}
+			}
+			character_event = { id = CNS.202 days = 150 random = 25 }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_smart_trigger = yes
+					has_education_learning_trigger = yes
+					has_focus = focus_ed_learning
+					has_education_lifestyle_trigger = yes
+					has_focus = focus_theology
+				}
+			}
+			character_event = { id = CNS.202 days = 300 random = 100 }
+		}
+		else = {
+			character_event = { id = CNS.202 days = 600 random = 400 }
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = EVTOPTBCNS200
+		if = {
+			limit = { NOT = { trait = slothful } }
+			random = {
+				chance = 20
+				add_trait = slothful
+				hidden_tooltip = {
+					character_event = {
+						id = 38251 #Notify Slothful
+					}
+				}
+			}
+		}
+		if = {
+			limit = { trait = slothful }
+			piety = -10
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				OR = {
+					trait = diligent
+					government = clergyless_temple_government
+				}
+			}
+			modifier = {
+				factor = 1.5
+				trait = content
+			}
+			modifier = {
+				factor = 2.5
+				trait = slothful
+			}
+		}
+	}
+}
+
+character_event = {  # On yearly pulse. ROOT = aspiring hafiz from the vanilla chain.
+	id = CNS.201
+	is_triggered_only = yes
+	hide_window = yes
+
+	religion_group = muslim
+	has_character_flag = aspiring_hafiz_flag
+
+	immediate = {  # Override the 2nd step of the vanilla hafiz chain and replace it with our own.
+		clr_character_flag = aspiring_hafiz_flag
+		if = {
+			limit = {
+				AND = {
+					is_smart_trigger = yes
+					OR = {
+						has_education_learning_trigger = yes
+						has_focus = focus_ed_learning
+						has_education_lifestyle_trigger = yes
+						has_focus = focus_theology
+					}
+				}
+			}
+			character_event = { id = CNS.202 }
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_smart_trigger = yes
+					has_education_learning_trigger = yes
+					has_focus = focus_ed_learning
+					has_education_lifestyle_trigger = yes
+					has_focus = focus_theology
+				}
+			}
+			character_event = { id = CNS.202 days = 167 }
+		}
+		else = {
+			character_event = { id = CNS.202 days = 600 random = 35 }
+		}
+	}
+}
+
+character_event = {  # ROOT = character, conclude the event chain if possible, otherwise delay it.
+	id = CNS.202
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		has_character_modifier = aspiring_hafiz
+		NOT = { trait = hafiz }
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				prisoner = no
+				is_incapable = no
+			}
+			character_event = { id = CNS.203 }
+		} else = {
+			repeat_event = { id = CNS.202 days = 100 }
+		}
+	}
+}
+
+character_event = {  # ROOT = character, add Hafiz/Guardian trait + flag + hidden modifiers.
+	id = CNS.203
+	desc = {
+		text = EVTDESCCNS203
+		trigger = { cns_religion_uses_hafiz = no }  #SEE CNS_guardian_triggers.txt
+	}
+	desc = {
+		text = EVTDESC1071
+		trigger = { cns_religion_uses_hafiz = yes }
+	}
+	picture = GFX_evt_monk
+	border = GFX_event_normal_frame_religion
+	
+	capable_only = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		name = {
+			text = EVTOPTACNS203
+			trigger = { cns_religion_uses_hafiz = no }  #SEE CNS_guardian_triggers.txt
+		}
+		name = {
+			text = EVTOPTA1071
+			trigger = { cns_religion_uses_hafiz = yes }
+		}
+		remove_character_modifier = aspiring_hafiz
+		cns_character_set_guardian_flag = yes  #SEE CNS_guardian_effects.txt
+		cns_character_set_guardian_effect = yes
+	}
+}
+
+character_event = {  # On conversion, ROOT = character, FROM = old religion.
+	id = CNS.204
+	is_triggered_only = yes
+	hide_window = yes
+
+	has_character_flag = cns_guardian
+
+	trigger = { NOT = { religion = FROM } }
+
+	immediate = {
+		clr_character_flag = cns_guardian_generic
+		cns_character_set_guardian_effect = yes  #SEE CNS_guardian_effects.txt
+	}
+}
+
+character_event = {  # On title gain, ROOT = character.
+	id = CNS.205
+	is_triggered_only = yes
+	hide_window = yes
+
+	has_character_flag = cns_guardian
+
+	immediate = {
+		cns_character_set_guardian_effect = yes  #SEE CNS_guardian_effects.txt
+	}
+}
+
+character_event = {  # On character generation, ROOT = character.
+	id = CNS.206
+	is_triggered_only = yes
+	hide_window = yes
+
+	min_age = 16
+
+	trigger = {
+		NOT = { FROM = { character = yes } }
+		cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+		OR = { 
+			has_education_learning_trigger = yes
+			has_lifestyle_learning_trigger = yes
+			government = clergyless_temple_government
+		}
+	}
+
+	immediate = {
+		random = {
+			chance = 5
+			modifier = {
+				factor = 20
+				government = clergyless_temple_government
+			}
+			modifier = {
+				factor = 2
+				FROMFROM = { government = clergyless_temple_government }
+			}
+			modifier = {
+				factor = 1.5
+				is_smart_trigger = yes
+			}
+			modifier = {
+				factor = 0.5
+				is_dumb_trigger = yes
+			}
+			modifier = {
+				factor = 2
+				has_education_learning_trigger = yes
+			}
+			modifier = {
+				factor = 1.5
+				trait = scholarly_theologian
+			}
+			modifier = {
+				factor = 2
+				trait = mastermind_theologian
+			}
+			modifier = {
+				factor = 1.5
+				trait = erudite
+			}
+			modifier = {
+				factor = 2
+				trait = theologian
+			}
+			cns_character_set_guardian_flag = yes  #SEE CNS_guardian_effects.txt
+			cns_character_set_guardian_effect = yes
+		}
+	}
+}

@@ -18,19 +18,12 @@ cns_ruler_change_government_to_clergyless = {
 			}
 		}
 		if = {
-			limit = {
-				tier = BARON
-				capital_holding = { holding_type = temple }
-				NOT = { dynasty_head = { higher_tier_than = BARON } }
-			}
+			limit = { is_government_potential = clergyless_temple_government }
 			set_government_type = clergyless_temple_government
 		} else_if = {
-			limit = {
-				cns_religion_compatible_with_secular_government = yes
-			}
+			limit = { cns_religion_compatible_with_secular_government = yes }
 			set_government_type = secular_feudal_government
-		}
-		else = {
+		} else = {
 			set_government_type = clergyless_feudal_government
 		}
 	}

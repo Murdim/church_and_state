@@ -1,0 +1,25 @@
+#CNS-FILE
+
+cns_religion_uses_hafiz = {
+	religion_group = muslim
+	religion_scope = { is_name_randomized = no }
+	# Druze and Yazidi SHOULD be excluded here, but vanilla doesn't treat them any differently...
+}
+
+cns_religion_uses_guardian_bible = {
+	religion_group = christian
+	religion_scope = { is_name_randomized = no }
+	NOT = { religion = messalian }
+}
+
+cns_religion_uses_guardian_torah = {
+	religion_group = jewish_group
+	religion_scope = { is_name_randomized = no }
+}
+
+cns_religion_scripture_is_legends = {
+	religion_group = pagan_group
+	religion_scope = { is_name_randomized = no }
+	NOT = { religion = norse_pagan_reformed }
+	NOT = { religion = bon_reformed }
+}

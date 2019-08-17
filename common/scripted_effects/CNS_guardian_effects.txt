@@ -1,0 +1,89 @@
+#CNS-FILE
+
+cns_character_set_guardian_flag = {
+	set_flag = cns_guardian
+	set_flag = cns_guardian_generic  # Cleared on conversion.
+	cns_character_set_guardian_flag_by_book = yes
+}
+
+cns_character_set_guardian_flag_by_book = {
+	if = {
+		limit = { cns_religion_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
+		set_flag = cns_hafiz
+		clr_flag = cns_guardian_generic
+	}
+	else_if = {
+		limit = { cns_religion_uses_guardian_bible = yes }  #SEE CNS_guardian_triggers.txt
+		set_flag = cns_guardian_bible
+		clr_flag = cns_guardian_generic
+	}
+	else_if = {
+		limit = { cns_religion_uses_guardian_torah = yes }  #SEE CNS_guardian_triggers.txt
+		set_flag = cns_guardian_torah
+		clr_flag = cns_guardian_generic
+	}
+}
+
+cns_character_set_guardian_effect = {
+	set_flag = cns_guardian_inactive
+	cns_character_set_guardian_hidden_modifiers = yes
+	if = {
+		limit = { has_flag = cns_guardian_inactive }
+		remove_trait = hafiz
+	}
+	else = {
+		add_trait = hafiz
+	}
+}
+
+cns_character_set_guardian_hidden_modifiers = {
+	remove_character_modifier = cns_hafiz
+	remove_character_modifier = cns_guardian_bible
+	remove_character_modifier = cns_guardian_torah
+	remove_character_modifier = cns_guardian_generic
+	if = {
+		limit = {
+			has_flag = cns_hafiz
+			cns_religion_uses_hafiz = yes
+		}
+		add_character_modifier = {
+			modifier = cns_hafiz
+			duration = -1
+			hidden = yes
+		}
+		clr_flag = cns_guardian_inactive
+	}
+	else_if = {
+		limit = {
+			has_flag = cns_guardian_bible
+			cns_religion_uses_guardian_bible = yes
+		}
+		add_character_modifier = {
+			modifier = cns_guardian_bible
+			duration = -1
+			hidden = yes
+		}
+		clr_flag = cns_guardian_inactive
+	}
+	else_if = {
+		limit = {
+			has_flag = cns_guardian_torah
+			cns_religion_uses_guardian_torah = yes
+		}
+		add_character_modifier = {
+			modifier = cns_guardian_torah
+			duration = -1
+			hidden = yes
+		}
+		clr_flag = cns_guardian_inactive
+	}
+	else_if = {
+		limit = { has_flag = cns_guardian_generic }
+		add_character_modifier = {
+			modifier = cns_guardian_generic
+			duration = -1
+			hidden = yes
+		}
+		clr_flag = cns_guardian_inactive
+	}
+}

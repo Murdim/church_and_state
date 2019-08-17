@@ -1,6 +1,11 @@
 # vim: set fileencoding=latin1
 #CNS-FILE
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+# common/event_modifiers/CNS_guardian_modifiers.txt
+cns_hafiz;[From.GetGuardianTrait];;;;;;;;;;;;;x
+cns_guardian_bible;[From.GetGuardianTrait];;;;;;;;;;;;;x
+cns_guardian_torah;[From.GetGuardianTrait];;;;;;;;;;;;;x
+cns_guardian_generic;[From.GetGuardianTrait];;;;;;;;;;;;;x
 # common/governments/CNS_feudal_governments.txt
 clergyless_feudal_government;Pious Feudal;Féodalité pieuse;;;;;;;;;;;;x
 clergyless_feudal_government_desc;The Pious Feudal government, much like the ordinary Feudal government, revolves around the oath between liege and vassal, with an additional emphasis on the spiritual responsibilities of the rulers over their subjects. It is available to Non-Clerical religions and allows holding Temples in addition to Castles. It effectively replaces Theocracies for these religions, except for the religious head and their vassals if they exist.;Le gouvernement féodal pieux, tout comme le gouvernement féodal ordinaire, repose sur un serment entre le seigneur lige et le vassal, avec un accent mis sur les réponsabilités spirituelles des dirigeants envers leurs sujets. Il est spécifique aux religions non-cléricales et permet de détenir des temples en plus des châteaux. Il remplace en pratique les théocraties pour ces religions, hormis pour le chef religieux et ses vassaux s'il existe.;;;;;;;;;;;;x
@@ -26,6 +31,22 @@ tooltip_religion_feature_clergyless_feudal_government;§GFeudal lords can hold Te
 tooltip_religion_feature_no_theocracy;§YThis religion will never produce Theocracies.§!;§YCette religion ne produira jamais de théocraties.§!;;;;;;;;;;;;x
 tooltip_religion_feature_no_theocracy_except_theocratic_head;§YThis religion will produce no Theocracies, except for Hierocratic heads and their vassals.§!;§YCette religion ne produira pas de théocraties autres qu'un chef Hiérocratique et ses vassaux.§!;;;;;;;;;;;;x
 tooltip_religion_feature_head_is_destroyed;§YThe religious head title is disabled.§!;§YLe titre de chef religieux est désactivé.§!;;;;;;;;;;;;x
+# events/CNS_guardian_events.txt
+EVTDESCCNS200;As I listened to the preacher respond to his congregation by faithfully reciting a passage from [This.Religion.GetScriptureName], I marveled at the piety of the man. To hold such a large portion of the holy scriptures in his memory is a feat only a true [This.Religion.GetName] believer could perform.;Tout en écoutant le prédicateur réciter sans fautes un extrait [This.Get_du_Scripture] en réponse aux questions de sa congrégation, je m'émerveillais de sa piété : Seuls les plus zélés disciples de la foi [This.Religion.GetName] sont capables de mémoriser une telle portion des textes sacrés.;;;;;;;;;;;;x
+EVTOPTACNS200;May [Root.Religion.GetHighGodName] be my witness, I will memorize [This.Religion.GetScriptureName]!;[Root.Religion.GetHighGodName] m'en soit témoin : je graverai [This.Get_le_Scripture] dans ma mémoire !;;;;;;;;;;;;x
+EVTOPTBCNS200;Marvelous! But it must be such a chore...;Merveilleux ! Mais quelle corvée...;Fantastisch! Aber das muss eine Heidenarbeit sein...;;¡Maravilloso! Pero debe ser tan tedioso...;;;;;;;;;x
+aspiring_hafiz;Aspiring [This.GetGuardianTrait]; Apprenti[This.Get_E] [This.GetGuardianTrait];;;;;;;;;;;;x
+aspiring_hafiz_desc;Committing [This.Religion.GetScriptureName] to memory.;Engagé[This.Get_E] dans l'apprentissage [This.Get_du_Scripture].;;;;;;;;;;;;x
+EVTDESCCNS203;My mind is filled with the wisdom of [This.Religion.GetScriptureName]. Every divine commandment is now within reach of my memory, always by my side, ready to guide me on any matter of faith.;Mon esprit est empli de la sagesse [This.Get_du_Scripture]. Chacun de ses commandements divins est désormais à portée de mémoire, toujours à mes côtés, prêt à me guider sur toute question de foi.;;;;;;;;;;;;x
+EVTOPTACNS203;I will remember these words until my death.;Je me souviendrai de ces mots jusqu'à ma mort.;;;;;;;;;;;;x
+# localisation/customizable_localisation/CNS_customizable_localisation.txt
+guardian_hafiz;Hafiz;Hafiz;Hafiz;;Hafiz;;;;;;;;;x
+guardian_scripture;Guardian of [This.Religion.GetScriptureName];Gardie[This.GetNNne] [This.Get_du_Scripture];;;;;;;;;;;;x
+guardian_desc_hafiz;This character has completely memorized the Qur'an.\nMonthly [This.Religion.GetPietyName]: §G+0.5§!\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!;Ce personnage connaît le Coran par coeur.\n[This.Religion.GetPietyName] par mois: §G+0.5§!\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+5§!;Dieser Charakter hat den Koran vollständig auswendig gelernt.\nMonthly [This.Religion.GetPietyName]: §G+0.5§!\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!;;Este personaje ha memorizado completamente el Corán.\nMonthly [This.Religion.GetPietyName]: §G+0.5§!\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!;;;;;;;;;x
+guardian_desc_bible;This character has memorized large portions of the Holy Bible.\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!\n[christian.GetGroupName] Opinion: §G+5§!;Ce personnage connaît par coeur une grande partie de la Sainte Bible.\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+5§!\nOpinion [christian.GetGroupName]: §G+5§!;;;;;;;;;;;;x
+guardian_desc_torah;This character has memorized large portions of the Tanakh.\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!\n[jewish_group.GetGroupName] Opinion: §G+5§!;Ce personnage connaît par coeur une grande partie du Tanakh.\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+5§!\nOpinion [jewish_group.GetGroupName]: §G+5§!;;;;;;;;;;;;x
+guardian_desc_generic_legends;This character has memorized large portions of the [This.Religion.GetName] legendary history.\nLearning: §G+2§!\nSame Faith Opinion: §G+10§!;Ce personnage connaît par coeur une grande partie de la légende historique [This.Religion.GetName].\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+10§!;;;;;;;;;;;;x
+guardian_desc_generic;This character has memorized large portions of [This.Religion.GetScriptureName].\nLearning: §G+2§!\nSame Faith Opinion: §G+10§!;Ce personnage connaît par coeur une grande partie [This.Get_du_Scripture].\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+10§!;;;;;;;;;;;;x
 # Overrides
 temple_baron_jewish_group;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_jewish;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
@@ -33,3 +54,6 @@ temple_baron_karaite;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_samaritan;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_count_jewish_group;Rabban;Rabbi;Rabban;;Rabban;;;;;;;;;x
 temple_duke_jewish_group;Nasi;Nassi;Nasi;;Nasi;;;;;;;;;x
+hafiz;[From.GetGuardianTrait];;;;;;;;;;;;;x
+hafiz_desc;[This.GetGuardianTraitDesc];;;;;;;;;;;;;x
+COMPL_HAFIZ;[This.GetGuardianTrait];;;;;;;;;;;;;x

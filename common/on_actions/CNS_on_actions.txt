@@ -7,21 +7,36 @@ on_startup = {
 	}
 }
 
+on_yearly_pulse = {
+	events = {
+		CNS.201  #SEE CNS_guardian_events.txt: override 2nd step of vanilla event chain.
+	}
+}
+
+on_five_year_pulse = {
+	random_events = {
+		10 = CNS.200  #SEE CNS_guardian_events.txt: start memorizing scripture.
+	}
+}
+
 on_new_holder = {
 	events = {
 		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+		CNS.205  #SEE CNS_guardian_events.txt: re-apply Guardian/Hafiz trait + hidden modifier.
 	}
 }
 
 on_new_holder_inheritance = {
 	events = {
 		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+		CNS.205  #SEE CNS_guardian_events.txt: re-apply Guardian/Hafiz trait + hidden modifier.
 	}
 }
 
 on_new_holder_usurpation = {
 	events = {
 		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+		CNS.205  #SEE CNS_guardian_events.txt: re-apply Guardian/Hafiz trait + hidden modifier.
 	}
 }
 
@@ -34,11 +49,18 @@ on_reform_religion = {
 on_character_convert_religion = {
 	events = {
 		CNS.2  #SEE CNS_maintenance_events.txt: switch to or from a clergyless government type.
+		CNS.204  #SEE CNS_guardian_events.txt: clear cns_flag_generic, then set Guardian/Hafiz trait + hidden modifier if still valid.
+	}
+}
+
+on_death = {
+	events = {
+		CNS.6  #SEE CNS_maintenance_events.txt: clergyless temple holder succession.
 	}
 }
 
 on_employer_change = {
 	events = {
-		CNS.6  #SEE CNS_maintenance_events.txt:
+		CNS.206  #SEE CNS_guardian_events.txt: add the Guardian trait to some randomly generated characters.
 	}
 }

@@ -1,0 +1,37 @@
+#CNS-FILE
+
+defined_text = {
+	name = GetGuardianTrait
+	use_first_valid = yes
+	text = {
+		trigger = { cns_character_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
+		localisation_key = guardian_hafiz
+	}
+	fallback_text = {
+		localisation_key = guardian_scripture
+	}
+}
+
+defined_text = {
+	name = GetGuardianTraitDesc
+	use_first_valid = yes
+	text = {
+		trigger = { cns_character_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
+		localisation_key = guardian_desc_hafiz
+	}
+	text = {
+		trigger = { cns_character_uses_guardian_bible = yes }
+		localisation_key = guardian_desc_bible
+	}
+	text = {
+		trigger = { cns_character_uses_guardian_torah = yes }
+		localisation_key = guardian_desc_torah
+	}
+	text = {
+		trigger = { cns_religion_scripture_is_legends = yes }
+		localisation_key = guardian_desc_generic_legends
+	}
+	fallback_text = {
+		localisation_key = guardian_desc_generic
+	}
+}

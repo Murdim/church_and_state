@@ -1,0 +1,28 @@
+#CNS-FILE
+
+cns_hafiz = {
+	learning = 2
+	monthly_character_piety = 0.5
+	same_religion_opinion = 5
+	icon = 2
+}
+
+cns_guardian_bible = {
+	learning = 2
+	christian_opinion = 5
+	same_religion_opinion = 5
+	icon = 2
+}
+
+cns_guardian_torah = {
+	learning = 2
+	jewish_group_opinion = 5
+	same_religion_opinion = 5
+	icon = 2
+}
+
+cns_guardian_generic = {
+	learning = 2
+	same_religion_opinion = 10
+	icon = 2
+}

@@ -98,9 +98,16 @@ feudal_governments = {
 		potential = {
 			OR = {  # Do NOT switch away immediately if the ruler shouldn't be clergyless; this is managed by events.
 				government = clergyless_temple_government
-				cns_ruler_should_use_clergyless_government = yes
+				AND = {
+					cns_ruler_should_use_clergyless_government = yes
+					tier = BARON
+					capital_holding = { holding_type = temple }
+					OR = {
+						is_lowborn = yes
+						NOT = { dynasty_head = { higher_tier_than = BARON } }
+					}
+				}
 			}
-			tier = BARON  # DO switch away immediately upon gaining a higher-tier title.
 			NOT = { is_government_potential = order_government }
 			is_patrician = no
 		}

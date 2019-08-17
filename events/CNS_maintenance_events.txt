@@ -49,6 +49,16 @@ character_event = {  # On conversion or title gain. ROOT = character.
 
 	immediate = {
 		if = {
+			limit = {
+				government = clergyless_temple_government
+				NAND = {
+					cns_ruler_should_use_clergyless_government = yes
+					tier = BARON
+				}
+			}
+			set_government_type = theocracy_government  # If still clergyless, let the next steps apply the correct government.
+		}
+		if = {
 			limit = { cns_ruler_should_use_clergyless_government = yes }
 			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
 			character_event = { id = CNS.3 days = 1 }  # Check the next day to fix anything that was messed up by hardcoded behavior.
@@ -64,9 +74,6 @@ character_event = {  # ROOT = character that should already have been switched t
 	is_triggered_only = yes
 	hide_window = yes
 
-	trigger = {
-	}
-
 	immediate = {
 		if = {
 			limit = { cns_ruler_should_use_clergyless_government = yes }  #SEE CNS_government_triggers.txt
@@ -79,18 +86,19 @@ character_event = {  # ROOT = character that should already have been switched t
 	}
 }
 
-character_event = {  # ROOT = Baron-tier clergyless temple holder, adapt their gender law to those of the religion.
+character_event = {  # ROOT = Baron-tier clergyless temple holder, apply succession laws.
 	id = CNS.4
 	is_triggered_only = yes
 	hide_window = yes
 	only_rulers = yes
 
+	trigger = {
+		government = clergyless_temple_government
+	}
+
 	immediate = {
 		any_demesne_title = {
-			limit = {
-				is_law_potential = succ_open_elective_clergyless_temple
-				holding_type = temple
-			}
+			limit = { holding_type = temple }
 			add_law = succ_open_elective_clergyless_temple
 			if = {
 				limit = { ROOT = { religion_allows_female_temple_holders = no } }
@@ -100,21 +108,13 @@ character_event = {  # ROOT = Baron-tier clergyless temple holder, adapt their g
 				limit = { ROOT = { religion_allows_male_temple_holders = no } }
 				add_law = succ_enatic_clergyless_temple
 			}
-			else = {  # Will generally be succeeded by someone of the same gender.
-				random_list = {
-					3 = {  # This will also prevent the spouse from almost always inheriting...
-						if = {
-							limit = { ROOT = { is_female = yes } }
-							add_law = succ_enatic_clergyless_temple
-						} else = {
-							add_law = succ_agnatic_clergyless_temple
-						}
-					}
-					1 = {
-						add_law = succ_cognatic_clergyless_temple
-					}
-				}
+			else = {
+				add_law = succ_cognatic_clergyless_temple
 			}
+		}
+		any_courtier = {
+			limit = { is_ruler = no }
+			character_event = { id = CNS.6 }
 		}
 	}
 }
@@ -127,7 +127,7 @@ character_event = {  # On reformation with Non-Clerical, ROOT = reformer
 	trigger = { has_religion_feature = religion_clergyless }
 
 	immediate = {
-		clr_flag = clergyless_religion  # This should NOT be on a feature-using religion; remove it, just in case.
+		clr_flag = clergyless_religion  # This should NOT be set on a feature-using religion; remove it, just in case.
 		if = {  # If combined with Autocephaly, destroy the religious head title given to the reformer.
 			limit = { has_flag = cns_destroy_religious_head }
 			clr_flag = cns_destroy_religious_head
@@ -139,3 +139,61 @@ character_event = {  # On reformation with Non-Clerical, ROOT = reformer
 		}
 	}
 }
+
+character_event = {  # On death of a clergyless temple holder, disqualify courtiers from succession.
+	id = CNS.6
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		government = clergyless_temple_government
+	}
+
+	immediate = {
+		any_courtier = { # Requires Guardian/Hafiz, good learning education, or any learning education + lifestyle...
+			if = {   # ... but theologians that have memorized the scriptures are especially favored.
+				limit = {
+					trait = hafiz
+					OR = {
+						trait = theologian
+						trait = scholarly_theologian
+						trait = mastermind_theologian
+					}
+				}
+				prestige = 10000
+				character_event = { id = CNS.7 days = 1 }  # Reset their prestige the next day.
+			}
+			else_if = {
+				limit = {
+					NOR = {
+						trait = hafiz
+						trait = scholarly_theologian
+						trait = mastermind_theologian
+						AND = {
+							has_education_learning_trigger = yes
+							has_lifestyle_learning_trigger = yes
+						}
+					}
+				}
+				prestige = -10000
+				character_event = { id = CNS.8 days = 1 }  # Restore their prestige the next day.
+			}
+		}
+		recalc_succession = yes
+	}
+}
+
+character_event = {
+	id = CNS.7
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = { prestige = -10000 }
+}
+
+character_event = {
+	id = CNS.8
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = { prestige = 10000 }
+}
+
