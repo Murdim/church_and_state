@@ -1,0 +1,57 @@
+#CNS-FILE
+
+title_councilmember_clergyless = {
+	is_high_prio = yes
+	dignity = 0.050
+	grant_limit = 1
+	opinion_effect = 10
+	monthly_salary = 0.00
+	monthly_piety = 0.5
+	is_voter = yes
+	
+	allowed_to_grant = {
+		pmo_can_hire_councilmember_clergyless = yes  #SEE CNS_clergyless_government_triggers.txt
+	}
+	
+	allowed_to_hold = {
+		NOT = { primary_title = { temporary = yes } }
+		pmo_can_be_councilmember_clergyless_trigger = yes  #SEE
+	}
+	revoke_trigger = {
+		FROM = {
+			primary_title = {
+				NOT = { 
+					AND = {
+						has_law = succession_voting_power_1
+						ROOT = { is_powerful_vassal = yes }
+					}
+				}
+			}
+		}
+	}
+	
+	gain_effect = {
+	}
+	lose_effect = {
+		if = {
+			limit = { FROM = { NOT = { has_character_flag = swapping_councillors } } }
+			opinion = { who = FROM modifier = opinion_fired_from_council }
+			opinion = { who = FROM modifier = opinion_recently_fired }
+		}
+	}
+
+	retire_effect = {
+		if = {
+			limit = {
+				NOT = { age = 65 }
+				health = 3
+				NOT = { is_sick_or_injured_trigger = yes }
+				can_be_councilmember_king_trigger = yes
+			}
+			FROM = { opinion = { who = ROOT modifier = opinion_resigned_from_council } }
+		}
+	}
+
+	message = yes
+}
+

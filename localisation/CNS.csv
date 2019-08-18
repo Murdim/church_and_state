@@ -22,6 +22,10 @@ clergylesstemple_baron_jewish_group;Hakham;;;;;;;;;;;;;x
 clergylesstemple_baron_female_jewish_group;Hakhama;;;;;;;;;;;;;x
 clergylesstemple_baron_jewish;Rabbi;Rabbin;Rabbiner;;Rabino;;;;;;;;;x
 clergylesstemple_baron_female_jewish;Rabbanit;Rabbine;;;;;;;;;;;;x
+# common/minor_titles/CNS_minor_titles.txt
+title_councilmember_clergyless;[Non-Clerical];;;;;;;;;;;;;x
+title_councilmember_clergyless_desc;[GetCouncilmemberClergylessDesc];;;;;;;;;;;;;x
+custom_reformed_nothing;;;;;;;;;;;;;;x
 # common/opinion_modifiers/CNS_opinion_modifiers.txt
 cns_wrong_government;Wrong Government Type;Mauvais type de gouvernement;Falsche Regierungsform;;Tipo de gobierno erróneo;;;;;;;;;x
 # common/religion_features/CNS_features.txt
@@ -31,6 +35,10 @@ tooltip_religion_feature_clergyless_feudal_government;§GFeudal lords can hold Te
 tooltip_religion_feature_no_theocracy;§YThis religion will never produce Theocracies.§!;§YCette religion ne produira jamais de théocraties.§!;;;;;;;;;;;;x
 tooltip_religion_feature_no_theocracy_except_theocratic_head;§YThis religion will produce no Theocracies, except for Hierocratic heads and their vassals.§!;§YCette religion ne produira pas de théocraties autres qu'un chef Hiérocratique et ses vassaux.§!;;;;;;;;;;;;x
 tooltip_religion_feature_head_is_destroyed;§YThe religious head title is disabled.§!;§YLe titre de chef religieux est désactivé.§!;;;;;;;;;;;;x
+# decisions/CNS_employment_decisions.txt
+cns_employ_delegate;Recruit Religious Delegate;Embaucher un représentant religieux;;;;;;;;;;;;x
+cns_employ_delegate_desc;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
+cns_employ_delegate_tooltip;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
 # events/CNS_guardian_events.txt
 EVTDESCCNS200;As I listened to the preacher respond to his congregation by faithfully reciting a passage from [This.Religion.GetScriptureName], I marveled at the piety of the man. To hold such a large portion of the holy scriptures in his memory is a feat only a true [This.Religion.GetName] believer could perform.;Tout en écoutant le prédicateur réciter sans fautes un extrait [This.Get_du_Scripture] en réponse aux questions de sa congrégation, je m'émerveillais de sa piété : Seuls les plus zélés disciples de la foi [This.Religion.GetName] sont capables de mémoriser une telle portion des textes sacrés.;;;;;;;;;;;;x
 EVTOPTACNS200;May [Root.Religion.GetHighGodName] be my witness, I will memorize [This.Religion.GetScriptureName]!;[Root.Religion.GetHighGodName] m'en soit témoin : je graverai [This.Get_le_Scripture] dans ma mémoire !;;;;;;;;;;;;x
@@ -39,6 +47,8 @@ aspiring_hafiz;Aspiring [This.GetGuardianTrait]; Apprenti[This.Get_E] [This.GetG
 aspiring_hafiz_desc;Committing [This.Religion.GetScriptureName] to memory.;Engagé[This.Get_E] dans l'apprentissage [This.Get_du_Scripture].;;;;;;;;;;;;x
 EVTDESCCNS203;My mind is filled with the wisdom of [This.Religion.GetScriptureName]. Every divine commandment is now within reach of my memory, always by my side, ready to guide me on any matter of faith.;Mon esprit est empli de la sagesse [This.Get_du_Scripture]. Chacun de ses commandements divins est désormais à portée de mémoire, toujours à mes côtés, prêt à me guider sur toute question de foi.;;;;;;;;;;;;x
 EVTOPTACNS203;I will remember these words until my death.;Je me souviendrai de ces mots jusqu'à ma mort.;;;;;;;;;;;;x
+# events/CNS_advisor_events.txt
+EVTDESCCNS300;The [invited_character.Religion.GetName] representative, [invited_character.GetFullName], has arrived at your court and is ready for employment.;Un[invited_character.Get_E] représentant[invited_character.Get_E] de la communauté [invited_character.Religion.GetName], [invited_character.GetFullName], est à présent à votre Cour et prêt[invited_character.Get_E] à travailler.;;;;;;;;;;;;x
 # localisation/customizable_localisation/CNS_customizable_localisation.txt
 guardian_hafiz;Hafiz;Hafiz;Hafiz;;Hafiz;;;;;;;;;x
 guardian_scripture;Guardian of [This.Religion.GetScriptureName];Gardie[This.GetNNne] [This.Get_du_Scripture];;;;;;;;;;;;x
@@ -48,6 +58,18 @@ guardian_desc_torah;This character has memorized large portions of the Tanakh.\n
 guardian_desc_generic_muslim;This character has memorized large portions of [This.Religion.GetScriptureName].\nMonthly [This.Religion.GetPietyName]: §G+0.5§!\nLearning: §G+2§!\nSame Faith Opinion: §G+5§!;Ce personnage connaît par coeur une grande partie [This.Get_du_Scripture].\n[This.Religion.GetPietyName] par mois: §G+0.5§!\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+5§!;;;;;;;;;;;;x
 guardian_desc_generic_legends;This character has memorized large portions of the [This.Religion.GetName] legendary history.\nLearning: §G+2§!\nSame Faith Opinion: §G+10§!;Ce personnage connaît par coeur une grande partie de la légende historique [This.Religion.GetName].\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+10§!;;;;;;;;;;;;x
 guardian_desc_generic;This character has memorized large portions of [This.Religion.GetScriptureName].\nLearning: §G+2§!\nSame Faith Opinion: §G+10§!;Ce personnage connaît par coeur une grande partie [This.Get_du_Scripture].\nÉrudition: §G+2§!\nOpinion de la part des coreligionnaires: §G+10§!;;;;;;;;;;;;x
+title_councilmember_clergyless_delegate;Delegate;Représentant;;;;;;;;;;;;x
+title_councilmember_clergyless_delegate_other_group;[This.Religion.GetGroupName] Delegate;Représentant[This.Get_E] [This.GetReligiousGroupMascFem];;;;;;;;;;;;x
+title_councilmember_clergyless_delegate_same_group;[This.Religion.GetName] Delegate;Représentant[This.Get_E] [This.GetReligionMascFem];;;;;;;;;;;;x
+title_councilmember_clergyless_peacemaker;Peacemaker;Pacificateur;;;;;;;;;;;;x
+title_councilmember_clergyless_propagandist;Propagandist;Propagandiste;;;;;;;;;;;;x
+title_councilmember_clergyless_censor;Censor;Censeur;;;;;;;;;;;;x
+title_councilmember_clergyless_fallback;Non-Clerical Advisor;Conseiller non-clérical;;;;;;;;;;;;x
+title_councilmember_clergyless_delegate_desc;This advisor represents the interests of their religious community as a member of the realm's council.;Ce conseiller représente les intérêts de sa communité religieuse au sein du conseil.;;;;;;;;;;;;x
+title_councilmember_clergyless_peacemaker_desc;The Peacemaker is a respected member of the realm's council, a spiritual advisor responsible for maintaining harmonious relations among vassals and subjects.;Le pacificateur est un conseiller spirituel respecté auprès des vassaux et des sujets, dont la responsabilité est d'assurer l'harmonie au sein de leurs relations.;;;;;;;;;;;;x
+title_councilmember_clergyless_propagandist_desc;The Propagandist is a respected member of the realm's council and is responsible for inspiring loyalty among vassals through religious zeal.;Le propagandiste est un membre respecté du Conseil dont la responsabilité est d'attiser la ferveur religieuse des vassaux afin d'assurer leur loyauté.;;;;;;;;;;;;x
+title_councilmember_clergyless_censor_desc;The Censor is a respected member of the realm's council and is responsible for upholding religious values and responsibilities among vassals.;Le censeur est un membre respecté du Conseil dont la responsabilité est d'astreindre les vassaux aux valeurs et responsabilités que leur dicte la religion.;;;;;;;;;;;;x
+title_councilmember_clergyless_fallback_desc;;;;;;;;;;;;;;x
 # Overrides
 temple_baron_jewish_group;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_jewish;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x

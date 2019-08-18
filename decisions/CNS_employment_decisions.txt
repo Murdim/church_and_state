@@ -1,0 +1,95 @@
+#CNS-FILE
+
+decisions = {
+	cns_employ_delegate = {
+		only_playable = yes
+		is_high_prio = yes
+		ai_check_interval = 60
+		potential = {
+			pmo_can_hire_councilmember_clergyless = yes  #SEE CNS_clergyless_government_triggers.txt
+			has_religion_feature = religion_cosmopolitan
+			NOT = { has_assigned_minor_title = title_councilmember_clergyless }
+			NOT = { has_flag = recruiting_delegate }
+		}
+		allow = {
+			NOT = { has_assigned_minor_title = title_councilmember_clergyless }
+			hidden_tooltip = {
+				OR = {
+					piety = 25
+					ai = no
+				}
+			}
+		}
+		effect = {
+			piety = -25
+			hidden_tooltip = {
+				set_flag = recruiting_delegate
+				random_demesne_province = {
+					limit = { NOT = { religion = ROOT } }
+					save_event_target_as = delegate_religion
+					save_event_target_as = delegate_culture
+				}
+				if = {
+					limit = {
+						NOT = { event_target:delegate_religion = { always = yes } }
+					}
+					random_realm_province = {
+						limit = { NOT = { religion = ROOT } }
+						save_event_target_as = delegate_religion
+						save_event_target_as = delegate_culture
+					}
+				}
+				if = {
+					limit = {
+						NOT = { event_target:delegate_religion = { always = yes } }
+						independent = no
+					}
+					top_liege = {
+						random_realm_province = {
+							limit = { NOT = { religion = ROOT } }
+							save_event_target_as = delegate_religion
+							save_event_target_as = delegate_culture
+						}
+					}
+				}
+				if = {
+					limit = {
+						NOT = { event_target:delegate_religion = { always = yes } }
+						OR = {
+							is_alternate_start = no
+							has_alternate_start_parameter = { key = religion value = historical }
+						}
+					}
+					cns_get_delegate_religion_from_capital_region = yes  #SEE CNS_delegate_effects.txt
+					capital_scope = { save_event_target_as = delegate_culture }
+				}
+				if = {  # Default to a Jewish (or Karaite) character.
+					limit = {
+						NOT = { event_target:delegate_religion = { always = yes } }
+					}
+					if = {
+						limit = { religion = jewish }
+						karaite = { save_event_target_as = delegate_religion }
+						sephardi = { save_event_target_as = delegate_culture }
+					}
+					else_if = {
+						limit = { capital_scope = { region = world_europe_west_iberia } }
+						jewish = { save_event_target_as = delegate_religion }
+						sephardi = { save_event_target_as = delegate_culture }
+					}
+					else = {
+						jewish = { save_event_target_as = delegate_religion }
+						ashkenazi = { save_event_target_as = delegate_culture }
+					}
+				}
+				character_event = { id = CNS.300 }
+			}
+		}
+		revoke_allowed = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

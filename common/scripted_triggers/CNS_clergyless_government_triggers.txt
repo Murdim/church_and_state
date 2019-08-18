@@ -86,3 +86,74 @@ cns_religion_compatible_with_secular_government = {
 		cns_religion_uses_jizya = yes  #SEE CNS_muslim_triggers.txt
 	}
 }
+
+pmo_can_be_councilmember_clergyless_trigger = {
+	independent = no
+	prisoner = no
+	is_incapable = no
+	NOT = { trait = in_hiding }
+	NOT = { has_character_modifier = resigned_in_anger }
+	NOT = { 
+		liege = { 
+			has_opinion_modifier = {
+				who = ROOT	
+				modifier = opinion_resigned_from_council 
+			} 
+		} 
+	}
+
+	OR = {
+		liege = {  # Censor, Propagandist or Peacemaker.
+			NOT = { has_religion_feature = religion_cosmopolitan }
+			religion = ROOT
+		}
+		liege = {  # (Different religion) Delegate.
+			has_religion_feature = religion_cosmopolitan
+			NOT = { religion = ROOT }
+		}
+	}
+	OR = {
+		AND = {  # Landed Delegates can be adults of any gender and education.
+			is_adult = yes
+			is_landed = yes
+			liege = { NOT = { religion = ROOT } }
+		}
+		AND = {  # Unlanded Delegates, and others, need to hold some spiritual authority.
+			is_adult = yes
+			OR = {
+				is_female = no
+				religion_allows_female_temple_holders = yes
+			}
+			OR = {
+				is_female = yes
+				religion_allows_male_temple_holders = yes
+			}
+			OR = {
+				NOT = { religion = hindu }
+				trait = brahmin
+			}
+			OR = {
+				is_theocracy = yes
+				has_education_learning_trigger = yes
+				has_lifestyle_learning_trigger = yes
+				trait = hafiz
+			}
+		}
+		is_ascetic_trigger = yes  # Ascetics and flagged characters bypass these conditions.
+		has_character_flag = special_spiritual
+	}
+}
+
+pmo_can_hire_councilmember_clergyless = {
+	higher_tier_than = COUNT
+	has_dlc = "Zeus"
+	has_religion_feature = religion_clergyless  # Requires the actual doctrine to unlock.
+	has_religion_feature = religion_cosmopolitan
+	cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_trigger.txt
+	OR = {
+		is_feudal = yes
+		is_republic = yes
+	}
+	NOT = { has_assigned_minor_title = title_councilmember_clergyless }
+	NOT = { has_flag = recruiting_delegate }
+}

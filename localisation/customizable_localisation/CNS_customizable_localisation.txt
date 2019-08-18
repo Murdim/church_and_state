@@ -39,3 +39,132 @@ defined_text = {
 		localisation_key = guardian_desc_generic
 	}
 }
+
+defined_text = {  # THIS = councilor most of the time, but before giving the title, it could be the liege, nothing, or...
+	name = Non-Clerical  # ... the command block might not be interpreted AT ALL, displaying [Non-Clerical], hence the readable name.
+	use_first_valid = yes
+	text = {  # Can't be sure if the player is looking at the Advisor title received from their liege, or their own empty Advisor slot...
+		trigger = {
+			ai = no
+			has_minor_title = title_councilmember_clergyless
+			pmo_can_hire_councilmember_clergyless = yes  #SEE CNS_clergyless_government_triggers.txt
+		}
+		localisation_key = title_councilmember_clergyless_fallback
+	}
+	text = {  # Use [ReligionGroup] Delegate for infidels, even if they shouldn't be here in the first place.
+		trigger = {
+			has_minor_title = title_councilmember_clergyless
+			liege = { NOT = { religion_group = PREV } }
+		}
+		localisation_key = title_councilmember_clergyless_delegate_other_group
+	}
+	text = {  # [Religion] Delegate for Cosmopolitan religions with THIS as the advisor.
+		trigger = {
+			has_minor_title = title_councilmember_clergyless
+			liege = { has_religion_feature = religion_cosmopolitan }
+		}
+		localisation_key = title_councilmember_clergyless_delegate_same_group
+	}
+	text = {  # Delegate for Cosmopolitan from the liege's POV, which primarily matters for players.
+		trigger = {  # No one will see it "in the AI's stead", or for themselves if they do not have access to this Advisor slot.
+			NOT = { has_minor_title = title_councilmember_clergyless }
+			has_religion_feature = religion_cosmopolitan
+		}
+		localisation_key = title_councilmember_clergyless_delegate
+	}
+	text = {  # Peacemaker, for Peaceful religions.
+		trigger = {
+			OR = {
+				AND = {
+					has_minor_title = title_councilmember_clergyless
+					liege = { has_religion_feature = religion_peaceful }
+				}
+				AND = {
+					NOT = { has_minor_title = title_councilmember_clergyless }
+					has_religion_feature = religion_peaceful
+				}
+			}
+		}
+		localisation_key = title_councilmember_clergyless_peacemaker
+	}
+	text = {  # Propagandist, for Warmongering and Proselytizing religions.
+		trigger = {
+			OR = {
+				AND = {
+					has_minor_title = title_councilmember_clergyless
+					OR = {
+						liege = { has_religion_feature = religion_warlike }
+						liege = { has_religion_feature = religion_proselytizing }
+					}
+				}
+				AND = {
+					NOT = { has_minor_title = title_councilmember_clergyless }
+					OR = {
+						has_religion_feature = religion_warlike
+						has_religion_feature = religion_proselytizing
+					}
+				}
+			}
+		}
+		localisation_key = title_councilmember_clergyless_propagandist
+	}
+	text = {  # Censor, for Unyielding and Dogmatic religions.
+		trigger = {
+			OR = {
+				AND = {
+					has_minor_title = title_councilmember_clergyless
+					OR = {
+						liege = { has_religion_feature = religion_defensive }
+						liege = { has_religion_feature = religion_dogmatic }
+					}
+				}
+				AND = {
+					NOT = { has_minor_title = title_councilmember_clergyless }
+					OR = {
+						has_religion_feature = religion_defensive
+						has_religion_feature = religion_dogmatic
+					}
+				}
+			}
+		}
+		localisation_key = title_councilmember_clergyless_censor
+	}
+	fallback_text = {  # Non-Clerical Advisor if the scope is wrong...
+		localisation_key = title_councilmember_clergyless_fallback
+	}
+}
+
+defined_text = {  # ROOT = liege, displayed when giving the title.
+	name = GetCouncilmemberClergylessDesc
+	use_first_valid = yes
+	text = {
+		trigger = { has_religion_feature = religion_cosmopolitan }
+		localisation_key = title_councilmember_clergyless_delegate_desc
+	}
+	text = {
+		trigger = { has_religion_feature = religion_peaceful }
+		localisation_key = title_councilmember_clergyless_peacemaker_desc
+	}
+	text = {
+		trigger = {
+			OR = {
+				has_religion_feature = religion_warlike
+				has_religion_feature = religion_proselytizing
+			}
+		}
+		localisation_key = title_councilmember_clergyless_propagandist_desc
+	}
+	text = {
+		trigger = {
+			OR = {
+				always = yes
+				has_religion_feature = religion_defensive
+				has_religion_feature = religion_dogmatic
+			}
+		}
+		localisation_key = title_councilmember_clergyless_censor_desc
+	}
+	fallback_text = {
+		localisation_key = title_councilmember_clergyless_fallback_desc
+	}
+}

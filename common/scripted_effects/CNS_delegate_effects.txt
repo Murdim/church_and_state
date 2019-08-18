@@ -1,0 +1,188 @@
+#CNS-FILE
+# Moved to a separate file to allow overrides.
+# ROOT is assumed not to be Catholic, Fraticelli, Muslim or Hindu, as these religions are not supposed to have access to Non-Clerical even in random worlds.
+
+cns_get_delegate_religion_from_capital_region = {  # Culture is optional.
+	if = {
+		limit = { capital_scope = { region = world_europe_west } }
+		catholic = { save_event_target_as = delegate_religion }
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_europe_south_italy } }
+		catholic = { save_event_target_as = delegate_religion }
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_europe_north } }
+		if = {
+			limit = {
+				NOT = { capital_scope = { region = custom_eastern_baltic } }
+				NOT = { religion = norse_pagan }
+				NOT = { start_date = 1066.9.15 }
+			}
+			norse_pagan = { save_event_target_as = delegate_religion }
+		}
+		else_if = {
+			limit = {
+				capital_scope = { region = custom_eastern_baltic } 
+				NOT = { religion = finnish_pagan }
+			}
+			finnish_pagan = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			catholic = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = custom_eastern_baltic } }
+		if = {
+			limit = { NOT = { religion = baltic_pagan } }  # Already treated Finland.
+			baltic_pagan = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			catholic = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_europe_east } }
+		if = {
+			limit = {
+				capital_scope = { terrain = arctic }
+				NOT = { religion = finnish_pagan }
+			}
+			finnish_pagan = { save_event_target_as = delegate_religion }
+		}
+		else_if = {
+			limit = {
+				NOT = { religion = slavic_pagan }
+				OR = {
+					religion = orthodox
+					NOT = { start_date = 1066.9.15 }
+				}
+			}
+			slavic_pagan = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			orthodox = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_europe_south_east } }
+		if = {
+			limit = { NOT = { religion = orthodox } }
+			orthodox = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			bogomilist = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				capital_scope = { region = world_africa_north }
+				capital_scope = { region = world_middle_east }
+			}
+		}
+		sunni = { save_event_target_as = delegate_religion }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				capital_scope = { region = world_africa_west }
+				capital_scope = { region = world_africa_central }
+			}
+		}
+		if = {
+			limit = { NOT = { religion = west_african_pagan } }
+			west_african_pagan = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			sunni = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_africa_east } }
+		if = {
+			limit = { NOT = { religion = miaphysite } }
+			miaphysite = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			sunni = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {  # 1066 is still pre-Manzikert, but add Sunni if later start dates are treated.
+		limit = { capital_scope = { region = world_asia_minor } }
+		if = {
+			limit = { NOT = { religion = orthodox } }
+			orthodox = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			miaphysite = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_persia } }
+		if = {
+			limit = {
+				NOT = { religion = zoroastrian }
+				NOT = { start_date = 936.8.7 }
+			}
+			zoroastrian = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			sunni = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_india } }
+		if = {
+			limit = {
+				capital_scope = { region = world_india_benghal }
+				NOT = { religion = buddhist }
+			}
+			buddhist = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			hindu = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_tibet } }
+		if = {
+			limit = {
+				NOT = { religion = bon }
+				OR = {
+					religion = buddhist
+					NOT = { start_date = 1066.9.15 }
+				}
+			}
+			bon = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			buddhist = { save_event_target_as = delegate_religion }
+		}
+	}
+	else_if = {
+		limit = { capital_scope = { region = world_steppe } }
+		if = {
+			limit = {
+				capital_scope = { terrain = arctic }
+				NOT = { religion = finnish_pagan }
+			}
+			finnish_pagan = { save_event_target_as = delegate_religion }
+		}
+		else_if = {
+			limit = {
+				capital_scope = { region = world_steppe_tarim }
+				NOT = { religion = buddhist }
+			}
+			buddhist = { save_event_target_as = delegate_religion }
+		}
+		else_if = {
+			limit = { NOT = { religion = tengri_pagan } }
+			tengri_pagan = { save_event_target_as = delegate_religion }
+		}
+		else = {
+			manichean = { save_event_target_as = delegate_religion }
+		}
+	}
+}
