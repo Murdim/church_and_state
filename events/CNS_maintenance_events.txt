@@ -22,14 +22,18 @@ character_event = {  # On starting a new campaign. ROOT = character controlled b
 			cns_deactivate_religion_heads = yes
 		}
 		any_character = {
-			limit = {
-				is_ruler = yes
-				cns_ruler_should_use_clergyless_government = yes  #SEE CNS_government_triggers.txt
+			limit = { is_ruler = yes }
+			if = {
+				limit = { cns_ruler_should_use_pluralist_government = yes }  #SEE CNS_government_triggers.txt
+				cns_ruler_change_government_to_pluralist = yes  #SEE CNS_maintenance_effects.txt
 			}
-			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
-			if = {  # Baron-tier temple holders use Open Elective.
-				limit = { government = clergyless_temple_government }
-				character_event = { id = CNS.4 }
+			else_if = {
+				limit = { cns_ruler_should_use_clergyless_government = yes }  #SEE CNS_government_triggers.txt
+				cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
+				if = {  # Baron-tier temple holders use Open Elective.
+					limit = { government = clergyless_temple_government }
+					character_event = { id = CNS.4 }
+				}
 			}
 		}
 	}
@@ -44,6 +48,7 @@ character_event = {  # On conversion or title gain. ROOT = character.
 	trigger = {
 		OR = {  # Fires for rulers that are OR should be using a clergyless government.
 			cns_ruler_should_use_clergyless_government = yes  #SEE CNS_government_triggers.txt
+			cns_ruler_should_use_pluralist_government = yes
 			cns_ruler_is_not_using_clergyless_government = no
 		}
 	}
@@ -60,6 +65,10 @@ character_event = {  # On conversion or title gain. ROOT = character.
 			set_government_type = theocracy_government  # If still clergyless, let the next steps apply the correct government.
 		}
 		if = {
+			limit = { cns_ruler_should_use_pluralist_government = yes }
+			cns_ruler_change_government_to_pluralist = yes  #SEE CNS_maintenance_effects.txt
+		}
+		else_if = {
 			limit = { cns_ruler_should_use_clergyless_government = yes }
 			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
 			character_event = { id = CNS.3 days = 1 }  # Check the next day to fix anything that was messed up by hardcoded behavior.

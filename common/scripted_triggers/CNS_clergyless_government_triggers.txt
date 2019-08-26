@@ -6,7 +6,7 @@ cns_religion_uses_clergyless_government = {
 	conditional_tooltip = {
 		trigger = {
 			has_game_rule = {
-				name = cns_religions
+				name = cns_clergyless
 				value = both
 			}
 		}
@@ -19,7 +19,7 @@ cns_religion_uses_clergyless_government = {
 	conditional_tooltip = {
 		trigger = {
 			has_game_rule = {
-				name = cns_religions
+				name = cns_clergyless
 				value = doctrine
 			}
 		}
@@ -28,7 +28,7 @@ cns_religion_uses_clergyless_government = {
 	conditional_tooltip = {
 		trigger = {
 			has_game_rule = {
-				name = cns_religions
+				name = cns_clergyless
 				value = static
 			}
 		}
@@ -40,13 +40,13 @@ cns_religion_uses_clergyless_government = {
 	conditional_tooltip = {
 		trigger = {
 			has_game_rule = {
-				name = cns_religions
+				name = cns_clergyless
 				value = off
 			}
 		}
 		NOT = {
 			has_game_rule = {
-				name = cns_religions
+				name = cns_clergyless
 				value = off
 			}
 		}

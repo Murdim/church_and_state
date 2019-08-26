@@ -62,22 +62,20 @@ feudal_governments = {
 			}
 			is_patrician = no
 		}
-		
+
 		color = { 10 138 120 }
 		frame_suffix = _clergyless
-		
+
 		dukes_called_kings = yes
 		barons_need_dynasty = yes
 		vassal_government_opinion_penalties = no  # Vassals use the cns_wrong_government modifier.
 
 		can_build_tribal = no
-		
 		ignore_in_vassal_limit_calculation = {
 			tribal_government
 		}
-		capital_move_delay = 600
 
-		## Modifiers
+		capital_move_delay = 600
 		court_size_modifier = 10
 	}
 
@@ -111,19 +109,19 @@ feudal_governments = {
 			NOT = { is_government_potential = order_government }
 			is_patrician = no
 		}
-		
+
 		color = { 10 138 120 }
 		frame_suffix = _clergyless
 		title_prefix = "clergylesstemple_"  # Used to give them more appropriate titles like Pastor or Rabbi.
-		
+
 		barons_need_dynasty = no  # As local religious leaders, they need a proper title to become feudal lords.
 		have_gender_laws = no  # Hide gender laws. The one tiny difference in the tooltip, replacing "no wrong government penalty"
 
 		can_build_tribal = no
-		
 		ignore_in_vassal_limit_calculation = {
 			tribal_government
 		}
+
 		capital_move_delay = 600
 	}
 
@@ -187,10 +185,10 @@ feudal_governments = {
 			}
 			is_patrician = no
 		}
-		
+
 		color = { 7 92 80 }
 		frame_suffix = _secular
-		
+
 		dukes_called_kings = yes
 		barons_need_dynasty = yes
 		can_demand_religious_conversion = no
@@ -200,14 +198,105 @@ feudal_governments = {
 		marriage_ignore_religion = yes
 
 		can_build_tribal = no
-		
 		ignore_in_vassal_limit_calculation = {
 			tribal_government
 		}
-		capital_move_delay = 600
 
-		## Modifiers
+		capital_move_delay = 600
 		court_size_modifier = 10
 	}
 
+	pluralist_feudal_government = {
+		preferred_holdings = { CASTLE }
+		allowed_holdings = {
+			CASTLE
+			FORT
+			HOSPITAL
+		}
+		allowed_holdings_culture = { # Will not get the wrong government type penalty for tribes of the same culture
+			TRIBAL
+		}
+		accepts_liege_governments = { # Gets the wrong religion modifier instead
+			feudal_government
+			muslim_government
+			theocratic_feudal_government
+		}
+		potential = {
+			cns_ruler_should_use_pluralist_government = yes
+			NOT = { primary_title = { has_flag = pluralist_empire } }
+			NOT = { is_government_potential = roman_imperial_government }
+			NOT = { is_government_potential = order_government }
+			is_patrician = no
+		}
+
+		color = { 55 99 138 }
+		frame_suffix = _pluralist
+
+		dukes_called_kings = yes
+		barons_need_dynasty = yes
+		can_demand_religious_conversion = no
+		gets_religion_opinion_penalties = no
+		gives_religion_opinion_penalties = no
+		vassal_government_opinion_penalties = no
+		marriage_ignore_religion = yes
+
+		can_build_tribal = no
+		ignore_in_vassal_limit_calculation = {
+			tribal_government
+		}
+
+		capital_move_delay = 600
+		court_size_modifier = 10
+	}
+
+	pluralist_imperial_government = {
+		preferred_holdings = { CASTLE CITY }
+		allowed_holdings = {
+			CASTLE
+			CITY
+			FORT
+			HOSPITAL
+		}
+		allowed_holdings_culture = { # Will not get the wrong government type penalty for tribes of the same culture
+			TRIBAL
+		}
+		accepts_liege_governments = { # Gets the wrong religion modifier instead
+			feudal_government
+			muslim_government
+			theocratic_feudal_government
+		}
+		frame_suffix = "_chineseimperial"  #TODO
+		potential = {
+			cns_ruler_should_use_pluralist_government = yes
+			primary_title = { has_flag = pluralist_empire }
+			NOT = { is_government_potential = roman_imperial_government }
+			NOT = { is_government_potential = order_government }
+			is_patrician = no
+		}
+
+		color = { 30 122 201 }
+		frame_suffix = _plurimperial
+
+		barons_need_dynasty = yes
+		can_create_empires = no
+		can_demand_religious_conversion = no
+		gets_religion_opinion_penalties = no
+		gives_religion_opinion_penalties = no
+		vassal_government_opinion_penalties = no
+		can_grant_kingdoms_and_empires_to_other_government_group = yes
+		free_retract_vassalage = yes
+		marriage_ignore_religion = yes
+
+		can_build_tribal = no
+		ignore_in_vassal_limit_calculation = {
+			tribal_government
+		}
+
+		capital_move_delay = 200
+		vassal_limit = 10
+		court_size_modifier = 15
+		character_modifier = {
+			monthly_character_piety = 1
+		}
+	}
 }

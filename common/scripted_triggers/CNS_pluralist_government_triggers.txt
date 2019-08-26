@@ -1,0 +1,40 @@
+#CNS-FILE
+
+cns_ruler_should_use_pluralist_government = {
+	has_religion_feature = religion_cosmopolitan
+	NOT = { has_game_rule = { name = cns_pluralist value = off } }
+	is_feudal = yes  # Mainly intended for independent, hereditary rulers.
+	OR = {
+		AND = {
+			tier = EMPEROR
+			primary_title = { has_flag = pluralist_empire }
+		}
+		AND = {
+			has_game_rule = { name = cns_pluralist value = on }
+			OR = {
+				controls_religion = yes
+				AND = {
+					trait = crowned_by_pope  # Must be crowned by the Pope of your CURRENT religion.
+					conditional_tooltip = {  #MOD divine_right_doctrine: compare with the religion saved at coronation.
+						trigger = {
+							NOR = {
+								religion = catholic
+								religion = fraticelli
+							}
+						}
+						religion = persistent_event_target:coronation_religion
+					}
+					conditional_tooltip = {  # If Catholic or Fraticelli, just make sure the vanilla coronation chain was used.
+						trigger = {
+							OR = {
+								religion = catholic
+								religion = fraticelli
+							}
+						}
+						NOT = { persistent_event_target:coronation_religion = { always = yes } }
+					}
+				}
+			}
+		}
+	}
+}

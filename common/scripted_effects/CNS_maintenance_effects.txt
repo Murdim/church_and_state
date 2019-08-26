@@ -41,6 +41,20 @@ cns_ruler_change_government_to_clergyless = {
 			set_government_type = clergyless_feudal_government
 		}
 	}
+	else_if = {
+		limit = {
+			government = secular_feudal_government
+			cns_religion_compatible_with_secular_government = no
+		}
+		set_government_type = clergyless_feudal_government
+	}
+	else_if = {
+		limit = {
+			government = clergyless_feudal_government
+			cns_religion_compatible_with_secular_government = yes
+		}
+		set_government_type = secular_feudal_government
+	}
 }
 
 cns_ruler_change_government_from_clergyless = {
@@ -66,5 +80,39 @@ cns_ruler_change_government_from_clergyless = {
 		else = {  # Otherwise, set to Feudal; if this is somehow wrong, the game will fix it on its own.
 			set_government_type = feudal_government
 		}
+	}
+}
+
+cns_ruler_change_government_to_pluralist = {
+	if = {
+		limit = {
+			OR = {
+				government = feudal_government
+				government = muslim_government
+				government = clergyless_feudal_government
+				government = secular_feudal_government
+			}
+		}
+		if = {
+			limit = { primary_title = { has_flag = pluralist_empire } }
+			set_government_type = pluralist_imperial_government
+		}
+		else = {
+			set_government_type = pluralist_feudal_government
+		}
+	}
+	else_if = {
+		limit = {
+			government = pluralist_feudal_government
+			primary_title = { has_flag = pluralist_empire }
+		}
+		set_government_type = pluralist_imperial_government
+	}
+	else_if = {
+		limit = {
+			government = pluralist_imperial_government
+			NOT = { primary_title = { has_flag = pluralist_empire } }
+		}
+		set_government_type = pluralist_feudal_government
 	}
 }

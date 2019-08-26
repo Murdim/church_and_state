@@ -12,6 +12,14 @@ spriteTypes = {
 		texturefile = "gfx\\interface\\government_icon_secular_feudal.dds"
 	} 
 	spriteType = {
+		name = "GFX_icon_pluralist_feudal_government"
+		texturefile = "gfx\\interface\\government_icon_pluralist_feudal.dds"
+	} 
+	spriteType = {
+		name = "GFX_icon_pluralist_imperial_government"
+		texturefile = "gfx\\interface\\government_icon_pluralist_imperial.dds"
+	} 
+	spriteType = {
 		name = "GFX_charframe_150_clergyless"
 		texturefile = "gfx\\interface\\charframe_150_clergyless.tga"
 		noOfFrames = 6
@@ -68,6 +76,66 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_charframe_34_secular"
 		texturefile = "gfx\\interface\\charframe_34_secular.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_150_pluralist"
+		texturefile = "gfx\\interface\\charframe_150_pluralist.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_100_pluralist"
+		texturefile = "gfx\\interface\\charframe_100_pluralist.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_75_pluralist"
+		texturefile = "gfx\\interface\\charframe_75_pluralist.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_50_pluralist"
+		texturefile = "gfx\\interface\\charframe_50_pluralist.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_34_pluralist"
+		texturefile = "gfx\\interface\\charframe_34_pluralist.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_150_plurimperial"
+		texturefile = "gfx\\interface\\charframe_150_plurimperial.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_100_plurimperial"
+		texturefile = "gfx\\interface\\charframe_100_plurimperial.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_75_plurimperial"
+		texturefile = "gfx\\interface\\charframe_75_plurimperial.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_50_plurimperial"
+		texturefile = "gfx\\interface\\charframe_50_plurimperial.tga"
+		noOfFrames = 6
+		allwaystransparent = yes
+	}
+	spriteType = {
+		name = "GFX_charframe_34_plurimperial"
+		texturefile = "gfx\\interface\\charframe_34_plurimperial.tga"
 		noOfFrames = 6
 		allwaystransparent = yes
 	}

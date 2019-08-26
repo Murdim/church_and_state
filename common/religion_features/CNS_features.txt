@@ -7,9 +7,9 @@ religion_doctrine = {
 			cns_religion_compatible_with_clergyless = yes  #SEE CNS_religion_feature_triggers.txt
 			OR = {
 				has_game_started = no
-				has_game_rule = { name = cns_religions value = doctrine }
+				has_game_rule = { name = cns_clergyless value = doctrine }
 				AND = {
-					has_game_rule = { name = cns_religions value = both }
+					has_game_rule = { name = cns_clergyless value = both }
 					NOT = { has_tag = clergyless_religion }
 				}
 			}

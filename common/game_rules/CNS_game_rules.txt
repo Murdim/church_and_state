@@ -1,26 +1,46 @@
 #CNS-FILE
 
-cns_religions = {
-	name = "RULE_CNS_RELIGIONS"
+cns_clergyless = {
+	name = "RULE_CNS_CLERGYLESS"
 	group = "RULE_GROUP_CNS"
 	option = {
 		name = both
 		text = "RULE_OPTION_BOTH"
-		desc = "RULE_CNS_RELIGIONS_BOTH"
+		desc = "RULE_CNS_CLERGYLESS_BOTH"
 	}
 	option = {
 		name = doctrine
 		text = "RULE_OPTION_DOCTRINE"
-		desc = "RULE_CNS_RELIGIONS_DOCTRINE"
+		desc = "RULE_CNS_CLERGYLESS_DOCTRINE"
 	}
 	option = {
 		name = tagged
 		text = "RULE_OPTION_STATIC"
-		desc = "RULE_CNS_RELIGIONS_STATIC"
+		desc = "RULE_CNS_CLERGYLESS_STATIC"
 	}
 	option = {
 		name = off
 		text = "RULE_OPTION_OFF"
-		desc = "RULE_CNS_RELIGIONS_OFF"
+		desc = "RULE_CNS_CLERGYLESS_OFF"
+	}
+}
+
+cns_pluralist = {
+	name = "RULE_CNS_PLURALIST"
+	group = "RULE_GROUP_CNS"
+	option = {
+		name = on
+		text = "RULE_OPTION_ON"
+		desc = "RULE_CNS_PLURALIST_ON"
+	}
+	option = {
+		name = imperial
+		text = "RULE_OPTION_IMPERIAL"
+		desc = "RULE_CNS_PLURALIST_IMPERIAL"
+	}
+	option = {
+		name = off
+		text = "RULE_OPTION_OFF"
+		desc = "RULE_CNS_PLURALIST_OFF"
 	}
 }

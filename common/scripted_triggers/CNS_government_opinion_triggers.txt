@@ -26,6 +26,7 @@
 cns_uses_vanilla_government_opinion_penalty = {
 	NOT = { government = clergyless_feudal_government }
 	NOT = { government = secular_feudal_government }
+	NOT = { government = pluralist_feudal_government }
 }
 
 cns_vassal_rejects_prev_government = {
@@ -37,15 +38,24 @@ cns_vassal_rejects_prev_government = {
 		PREV = { government = secular_feudal_government }
 		cns_vassal_accepts_prev_secular_feudal_government = yes
 	}
+	NAND = {
+		PREV = { government = pluralist_feudal_government }
+		cns_vassal_accepts_prev_pluralist_feudal_government = yes
+	}
 }
 
-# Extend this to have a government accept all lieges by default, regardless of its own group.
+# Extend this to have a government accept lieges by default, bypassing the normal group-level restrictions.
 cns_government_group_based_liege_acceptance = { }
 
 cns_vassal_accepts_prev_clergyless_feudal_government = {
 	OR = {
 		cns_government_group_based_liege_acceptance = no
 		is_feudal = yes
+		AND = {  # Kings of Israel can have Theocratic vassals.
+			is_theocracy = yes
+			religion_group = jewish_group
+			PREV = { has_landed_title = k_israel }
+		}
 		AND = {
 			is_tribal = yes
 			culture = PREV
@@ -59,9 +69,30 @@ cns_vassal_accepts_prev_secular_feudal_government = {
 		cns_government_group_based_liege_acceptance = no
 		is_feudal = yes
 		AND = {
+			is_theocracy = yes
+			OR = {
+				AND = {  # Kings of Israel can have Theocratic vassals.
+					religion_group = jewish_group
+					PREV = { has_landed_title = k_israel }
+				}
+			}
+		}
+		AND = {
 			is_tribal = yes
 			culture = PREV
 		}
 	}
 	NOT = { government = order_government }
+}
+
+cns_vassal_accepts_prev_pluralist_feudal_government = {
+	OR = {
+		cns_government_group_based_liege_acceptance = no
+		is_feudal = yes
+		is_theocracy = yes
+		AND = {
+			is_tribal = yes
+			culture = PREV
+		}
+	}
 }
