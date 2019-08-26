@@ -15,6 +15,7 @@ character_event = {  # Randomy on five year pulse. ROOT = character.
 	is_triggered_only = yes
 	
 	trigger = {
+		has_game_rule = { name = cns_guardian value = on }
 		OR = {  # Clergyless religion that does not already use Hafiz, INCLUDING randomized Muslims.
 			cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
 			AND = {
@@ -173,6 +174,7 @@ character_event = {  # On yearly pulse. ROOT = aspiring hafiz from the vanilla c
 	has_character_flag = aspiring_hafiz_flag
 
 	immediate = {  # Override the 2nd step of the vanilla hafiz chain and replace it with our own.
+		has_game_rule = { name = cns_guardian value = on }
 		clr_character_flag = aspiring_hafiz_flag
 		if = {
 			limit = {
@@ -297,6 +299,7 @@ character_event = {  # On character generation, ROOT = character.
 
 	trigger = {
 		NOT = { FROM = { character = yes } }
+		has_game_rule = { name = cns_guardian value = on }
 		cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
 		OR = { 
 			has_education_learning_trigger = yes

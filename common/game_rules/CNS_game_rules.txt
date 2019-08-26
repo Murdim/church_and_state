@@ -44,3 +44,18 @@ cns_pluralist = {
 		desc = "RULE_CNS_PLURALIST_OFF"
 	}
 }
+
+cns_guardian = {
+	name = "RULE_CNS_GUARDIAN"
+	group = "RULE_GROUP_CNS"
+	option = {
+		name = on
+		text = "RULE_OPTION_ON"
+		desc = "RULE_CNS_GUARDIAN_ON"
+	}
+	option = {
+		name = off
+		text = "RULE_OPTION_OFF"
+		desc = "RULE_CNS_GUARDIAN_OFF"
+	}
+}
