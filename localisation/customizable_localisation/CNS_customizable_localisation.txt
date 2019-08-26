@@ -16,6 +16,10 @@ defined_text = {
 	name = GetGuardianTraitDesc
 	use_first_valid = yes
 	text = {
+		trigger = { has_game_rule = { name = cns_guardian value = off } }
+		localisation_key = guardian_desc_vanilla
+	}
+	text = {
 		trigger = { cns_religion_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
 		localisation_key = guardian_desc_hafiz
 	}
