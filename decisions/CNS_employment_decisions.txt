@@ -12,7 +12,6 @@ decisions = {
 			NOT = { has_flag = recruiting_delegate }
 		}
 		allow = {
-			NOT = { has_assigned_minor_title = title_councilmember_clergyless }
 			hidden_tooltip = {
 				OR = {
 					piety = 25

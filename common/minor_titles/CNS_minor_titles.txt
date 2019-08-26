@@ -15,7 +15,7 @@ title_councilmember_clergyless = {
 	
 	allowed_to_hold = {
 		NOT = { primary_title = { temporary = yes } }
-		pmo_can_be_councilmember_clergyless_trigger = yes  #SEE
+		pmo_can_be_councilmember_clergyless_trigger = yes  #SEE CNS_clergyless_government_triggers.txt
 	}
 	revoke_trigger = {
 		FROM = {

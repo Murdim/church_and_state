@@ -148,7 +148,6 @@ pmo_can_hire_councilmember_clergyless = {
 	higher_tier_than = COUNT
 	has_dlc = "Zeus"
 	has_religion_feature = religion_clergyless  # Requires the actual doctrine to unlock.
-	has_religion_feature = religion_cosmopolitan
 	cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_trigger.txt
 	OR = {
 		is_feudal = yes
