@@ -1,0 +1,13 @@
+#CNS-FILE
+
+leave_council_position_effect = {
+	if = {
+		limit = { has_minor_title = title_councilmember_clergyless }
+		remove_title = title_councilmember_clergyless
+		add_character_modifier = {
+			modifier = resigned_in_anger
+			years = 2
+			hidden = yes
+		}
+	}
+}
