@@ -15,7 +15,13 @@ character_event = {  # Randomy on five year pulse. ROOT = character.
 	is_triggered_only = yes
 	
 	trigger = {
-		cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+		OR = {  # Clergyless religion that does not already use Hafiz, INCLUDING randomized Muslims.
+			cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+			AND = {
+				has_alternate_start_parameter = { key = religion_names value = random }
+				religion_group = muslim
+			}
+		}
 		OR = {  # Pagans need to reform and organize their scriptures.
 			NOT = { religion_group = pagan_group }
 			is_reformed_religion = yes
