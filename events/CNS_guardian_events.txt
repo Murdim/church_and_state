@@ -278,7 +278,7 @@ character_event = {  # On conversion, ROOT = character, FROM = old religion.
 	}
 }
 
-character_event = {  # On title gain, ROOT = character.
+character_event = {  # On title gain or session start, ROOT = character.
 	id = CNS.205
 	is_triggered_only = yes
 	hide_window = yes
