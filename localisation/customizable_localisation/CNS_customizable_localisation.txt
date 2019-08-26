@@ -4,7 +4,7 @@ defined_text = {
 	name = GetGuardianTrait
 	use_first_valid = yes
 	text = {
-		trigger = { cns_character_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
+		trigger = { cns_religion_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
 		localisation_key = guardian_hafiz
 	}
 	fallback_text = {
@@ -16,15 +16,15 @@ defined_text = {
 	name = GetGuardianTraitDesc
 	use_first_valid = yes
 	text = {
-		trigger = { cns_character_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
+		trigger = { cns_religion_uses_hafiz = yes }  #SEE CNS_guardian_triggers.txt
 		localisation_key = guardian_desc_hafiz
 	}
 	text = {
-		trigger = { cns_character_uses_guardian_bible = yes }
+		trigger = { cns_religion_uses_guardian_bible = yes }
 		localisation_key = guardian_desc_bible
 	}
 	text = {
-		trigger = { cns_character_uses_guardian_torah = yes }
+		trigger = { cns_religion_uses_guardian_torah = yes }
 		localisation_key = guardian_desc_torah
 	}
 	text = {
