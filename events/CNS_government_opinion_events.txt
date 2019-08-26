@@ -1,4 +1,5 @@
 #CNS-FILE
+# Alternate "wrong government liege" system, following the rules defined in the CNS_government_opinion_triggers.txt file.
 
 namespace = CNS  #100-199
 
@@ -10,9 +11,12 @@ character_event = {  # On session start. ROOT = character controlled by the game
 	only_playable = yes
 	ai = no
 
-	trigger = {
+	trigger = {  # Only (re)start the monthly loop if needed.
 		is_multiplayer_host_character = yes
-		NOT = { has_global_flag = cns_applied_wrong_government_opinions }
+		OR = {
+			NOT = { has_global_flag = cns_applied_wrong_government_opinions }
+			had_global_flag = { flag = cns_applied_wrong_government_opinions days = 31 }
+		}
 	}
 
 	immediate = {
@@ -20,28 +24,28 @@ character_event = {  # On session start. ROOT = character controlled by the game
 	}
 }
 
-province_event = {
+province_event = {  # Every 30 days, apply a 30-day opinion penalty towards wrong government lieges.
 	id = CNS.101
 	is_triggered_only = yes
 	hide_window = yes
 
 	immediate = {
-		set_global_flag = cns_applied_wrong_government_opinions  # Make sure this event ACTUALLY fired.
+		set_global_flag = cns_applied_wrong_government_opinions  # Keep track of the last time this event ACTUALLY fired.
 		any_playable_ruler = {
 			limit = {
 				higher_tier_than = COUNT
-				cns_uses_vanilla_government_opinion_penalty = no
+				cns_uses_vanilla_government_opinion_penalty = no  #SEE CNS_government_opinion_triggers.txt
 			}
 			any_vassal = {
 				limit = {
 					higher_tier_than = BARON
 					NOT = { government = PREV }
-					cns_vassal_rejects_prev_government = yes
+					cns_vassal_rejects_prev_government = yes  #SEE CNS_government_opinion_triggers.txt
 				}
 				remove_opinion = { who = PREV modifier = cns_wrong_government }
 				opinion = { who = PREV modifier = cns_wrong_government }
 			}
 		}
-		repeat_event = { id = CNS.101 months = 1 }  # Repeat every month.
+		repeat_event = { id = CNS.101 days = 30 }  # Repeat every month.
 	}
 }
