@@ -16,7 +16,7 @@ secular_feudal_government_desc;The Secular Feudal government, much like the ordi
 pluralist_feudal_government;Pluralist Feudal;Féodalité pluraliste;;;;;;;;;;;;x
 pluralist_feudal_government_desc;The Pluralist Feudal government, much like the ordinary Feudal government, revolves around the oath between liege and vassal. The ruler, seen as a blessed figure within his own faith, must protect all religions as his most sacred duty. It is available to the temporal heads of Cosmopolitan religions, as well as any king crowned by them or a powerful theocratic head.;Le gouvernement féodal pluraliste, tout comme le gouvernement féodal ordinaire, repose sur un serment entre le seigneur lige et le vassal. Le souverain, perçu comme céleste au sein de sa propre foi, a pour devoir sacré de protéger toutes les religions. Il est spécifique aux chefs temporels des religions Cosmopolitaine, ainsi qu'aux rois couronné par un tel personnage ou par un puissant chef théocratique.;;;;;;;;;;;;x
 pluralist_imperial_government;Pluralist Imperial;Impérial pluraliste;;;;;;;;;;;;x
-pluralist_imperial_government_desc;An Imperial government differs from its feudal counterpart by placing a larger focus on urban areas. As protector of all religions, the divine Emperor must display a non-sectarian piety towards Heaven in order to command the loyalty of his subjects and vassals throughout his vast realm.;Un gouvernement impérial diffère de son homologue féodal en se concentrant davantage sur les zones urbaines. Protecteur de toutes les religions, le divin Empereur doit afficher une piété non-sectaire envers les Cieux afin de commander la loyauté de ses sujets et vassaux à travers son immense royaume.;;;;;;;;;;;;x
+pluralist_imperial_government_desc;An Imperial government differs from its feudal counterpart by placing a larger focus on urban areas. As protector of all religions, the divine Emperor must display a non-sectarian piety in order to command the loyalty of his subjects and vassals throughout his vast realm.;Un gouvernement impérial diffère de son homologue féodal en se concentrant davantage sur les zones urbaines. Protecteur de toutes les religions, le divin Empereur doit afficher une piété non-sectaire afin de commander la loyauté de ses sujets et vassaux à travers son immense royaume.;;;;;;;;;;;;x
 secular_feudal_government_desc;Secular Feudal;Féodalité laïque;;;;;;;;;;;;x
 clergylesstemple_baron;Father;Père;Vater;;Padre;Padre;;;;;;;;x
 clergylesstemple_baron_female;Mother;Mère;Mutter;;Madre;Madre;;;;;;;;x
@@ -43,6 +43,15 @@ tooltip_religion_feature_head_is_destroyed;§YThe religious head title is disable
 cns_employ_delegate;Recruit Religious Delegate;Embaucher un représentant religieux;;;;;;;;;;;;x
 cns_employ_delegate_desc;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
 cns_employ_delegate_tooltip;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
+# decisions/CNS_employment_decisions.txt
+cns_adopt_pluralist_imperialism;Adopt Pluralist Imperialism;Adopter l'impérialisme pluraliste;;;;;;;;;;;;x
+cns_adopt_pluralist_imperialism_desc;Reform your realm into an empire founded on religious tolerance.;Réformer votre royaume en un empire fondé sur la tolérance religieuse.;;;;;;;;;;;;x
+calc_true_if_2;At least TWO of the following must be true;;;;;;;;;;;;x
+cns_adopt_pluralist_imperialism_historically_pluralist;The [Root.PrimaryTitle.GetFullName] has been pluralist in the past.;Le pluralisme fait partie de l'histoire [Root.PrimaryTitle.Get_du_RealmFull];;;;;;;;;;;;x
+cns_adopt_pluralist_imperialism_is_reformer;Reformed the [Root.Religion.GetName] religion;A réformé la religion [Root.Religion.GetName];;;;;;;;;;;;x
+cns_adopt_pluralist_imperialism_religious_diversity;Not following the [Root.Religion.GetName] religion or one of its heresies:\n * At least §Y20%§! of all characters in the realm\n * §Y2 of the 10§! most powerful vassals;Au moins §Y20%§! de tous les personnages du royaume et §Y2 des 10§! plus puissants vassaux ne pratiquent pas la religion [Root.Reliigion.GetName] ou une de ses hérésies.;;;;;;;;;;;;x
+# events/CNS_advisor_events.txt
+EVTDESCCNS300;The [invited_character.Religion.GetName] representative, [invited_character.GetFullName], has arrived at your court and is ready for employment.;Un[invited_character.Get_E] représentant[invited_character.Get_E] de la communauté [invited_character.Religion.GetName], [invited_character.GetFullName], est à présent à votre Cour et prêt[invited_character.Get_E] à travailler.;;;;;;;;;;;;x
 # events/CNS_guardian_events.txt
 EVTDESCCNS200;As I listened to the preacher respond to his congregation by faithfully reciting a passage from [This.Religion.GetScriptureName], I marveled at the piety of the man. To hold such a large portion of the holy scriptures in his memory is a feat only a true [This.Religion.GetName] believer could perform.;Tout en écoutant le prédicateur réciter sans fautes un extrait [This.Get_du_Scripture] en réponse aux questions de sa congrégation, je m'émerveillais de sa piété : Seuls les plus zélés disciples de la foi [This.Religion.GetName] sont capables de mémoriser une telle portion des textes sacrés.;;;;;;;;;;;;x
 EVTOPTACNS200;May [Root.Religion.GetHighGodName] be my witness, I will memorize [This.Religion.GetScriptureName]!;[Root.Religion.GetHighGodName] m'en soit témoin : je graverai [This.Get_le_Scripture] dans ma mémoire !;;;;;;;;;;;;x
@@ -51,8 +60,12 @@ aspiring_hafiz;Aspiring [This.GetGuardianTrait]; Apprenti[This.Get_E] [This.GetG
 aspiring_hafiz_desc;Committing [This.Religion.GetScriptureName] to memory.;Engagé[This.Get_E] dans l'apprentissage [This.Get_du_Scripture].;;;;;;;;;;;;x
 EVTDESCCNS203;My mind is filled with the wisdom of [This.Religion.GetScriptureName]. Every divine commandment is now within reach of my memory, always by my side, ready to guide me on any matter of faith.;Mon esprit est empli de la sagesse [This.Get_du_Scripture]. Chacun de ses commandements divins est désormais à portée de mémoire, toujours à mes côtés, prêt à me guider sur toute question de foi.;;;;;;;;;;;;x
 EVTOPTACNS203;I will remember these words until my death.;Je me souviendrai de ces mots jusqu'à ma mort.;;;;;;;;;;;;x
-# events/CNS_advisor_events.txt
-EVTDESCCNS300;The [invited_character.Religion.GetName] representative, [invited_character.GetFullName], has arrived at your court and is ready for employment.;Un[invited_character.Get_E] représentant[invited_character.Get_E] de la communauté [invited_character.Religion.GetName], [invited_character.GetFullName], est à présent à votre Cour et prêt[invited_character.Get_E] à travailler.;;;;;;;;;;;;x
+# events/CNS_maintenance_events.txt
+EVTDESCCNS12;[FromFrom.GetTitledFirstName] ruled the [From.GetFullName] in the spirit of religious pluralism. Many call for me to continue [FromFrom.GetHerHis] tolerant ways, but I am not so sure.;[FromFrom.GetTitledFirstName] a dirigé [From.Get_du_RealmFull] dans un esprit de pluralisme religieux. Nombreux sont ceux à me demander de maintenir son attitude tolérante.
+EVTOPTACNS12_already_cosmopolitan;I will preserve the traditions of [From.GetName].;Je préserverai les traditions [From.Get_du_Realm].;;;;;;;;;;;;x
+EVTOPTACNS12_secretly_cosmopolitan;I can finally profess my [Root.Religion.GetName] faith.;Je peux enfin professer ma foi [Root.Religion.GetName].;;;;;;;;;;;;x
+EVTOPTACNS12_convert_to_cosmopolitan;[metonym.GetName] is well worth [EVTOPTACNS12Ceremony]...;[metonym.GetName] vaut bien [EVTOPTACNS12Ceremony]...;;;;;;;;;;;;x
+EVTOPTBCNS12;No. [From.GetAdjective] pluralism ended with my [FromFrom.GetRootRelation]'s reign.;Non. Le pluralisme [From.GetAdjective] a pris fin en même temps que le règne de m[FromFrom.GetOnA] [FromFrom.GetRootRelation].
 # localisation/customizable_localisation/CNS_customizable_localisation.txt
 guardian_hafiz;Hafiz;Hafiz;Hafiz;;Hafiz;;;;;;;;;x
 guardian_scripture;Guardian of [This.Religion.GetScriptureName];Gardie[This.GetNNne] [This.Get_du_Scripture];;;;;;;;;;;;x
@@ -75,6 +88,8 @@ title_councilmember_clergyless_peacemaker_desc;The Peacemaker is a respected mem
 title_councilmember_clergyless_propagandist_desc;The Propagandist is a respected member of the realm's council and is responsible for inspiring loyalty among vassals through religious zeal.;Le propagandiste est un membre respecté du Conseil dont la responsabilité est d'attiser la ferveur religieuse des vassaux afin d'assurer leur loyauté.;;;;;;;;;;;;x
 title_councilmember_clergyless_censor_desc;The Censor is a respected member of the realm's council and is responsible for upholding religious values and responsibilities among vassals.;Le censeur est un membre respecté du Conseil dont la responsabilité est d'astreindre les vassaux aux valeurs et responsabilités que leur dicte la religion.;;;;;;;;;;;;x
 title_councilmember_clergyless_fallback_desc;;;;;;;;;;;;;;x
+EVTOPTACNS12_ceremony_mass;a mass;une messe;;;;;;;;;;;;x
+EVTOPTACNS12_ceremony_default;a [pluralist_religion.GetName] ceremony;une cérémonie [pluralist_religion.GetName];;;;;;;;;;;;x
 # Overrides
 temple_baron_jewish_group;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_jewish;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x

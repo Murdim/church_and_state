@@ -172,3 +172,18 @@ defined_text = {  # ROOT = liege, displayed when giving the title.
 		localisation_key = title_councilmember_clergyless_fallback_desc
 	}
 }
+
+defined_text = {
+	name = EVTOPTACNS12Ceremony
+	text = {
+		trigger = {
+			event_target:pluralist_religion = {
+				religion_group = christian
+				is_name_randomized = no
+			}
+		}
+		localisation_key = EVTOPTACNS12_ceremony_mass
+	}
+	fallback_text = {
+		localisation_key = EVTOPTACNS12_ceremony_default
+	}

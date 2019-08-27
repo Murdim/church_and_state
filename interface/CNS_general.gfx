@@ -1,7 +1,7 @@
 spriteTypes = {
 	spriteType = {
 		name = "GFX_icon_clergyless_feudal_government"
-		texturefile = "gfx\\interface\\government_icon_clergyless_feudal.dds"
+		texturefile = "gfx\\interface\\government_icon_clergyless_feudal.dds"  # Based on government_icon_feudal.dds and government_icon_theocracy.dds
 	} 
 	spriteType = {
 		name = "GFX_icon_clergyless_temple_government"
@@ -9,19 +9,19 @@ spriteTypes = {
 	} 
 	spriteType = {
 		name = "GFX_icon_secular_feudal_government"
-		texturefile = "gfx\\interface\\government_icon_secular_feudal.dds"
+		texturefile = "gfx\\interface\\government_icon_secular_feudal.dds"  # Based on government_icon_iqta.dds
 	} 
 	spriteType = {
 		name = "GFX_icon_pluralist_feudal_government"
-		texturefile = "gfx\\interface\\government_icon_pluralist_feudal.dds"
+		texturefile = "gfx\\interface\\government_icon_pluralist_feudal.dds"  # Based on religion_icon_strip_big.dds and shield_crown_strip_small.dds
 	} 
 	spriteType = {
 		name = "GFX_icon_pluralist_imperial_government"
-		texturefile = "gfx\\interface\\government_icon_pluralist_imperial.dds"
+		texturefile = "gfx\\interface\\government_icon_pluralist_imperial.dds"  # Based on religion_icon_strip_big.dds and shield_crown_strip_small.dds
 	} 
 	spriteType = {
 		name = "GFX_charframe_150_clergyless"
-		texturefile = "gfx\\interface\\charframe_150_clergyless.tga"
+		texturefile = "gfx\\interface\\charframe_150_clergyless.tga"  # All charframes are based on charframe_RES_iqta.tga
 		noOfFrames = 6
 		allwaystransparent = yes
 	}

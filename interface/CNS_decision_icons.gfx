@@ -1,0 +1,10 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_cns_employ_delegate"
+		texturefile = "gfx\\interface\\decision_icon_employ_priest.dds"
+	} 
+	spriteType = {
+		name = "GFX_cns_adopt_pluralist_imperialism"
+		texturefile = "gfx\\interface\\decision_icon_adopt_pluralist_imperialism.dds"  # Based on decision_icon_form_new_empire.dds
+	} 
+}

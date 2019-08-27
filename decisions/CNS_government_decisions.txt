@@ -1,0 +1,278 @@
+#CNS-FILE
+
+decisions = {
+	cns_adopt_pluralist_imperialism = {
+		only_independent = yes
+		is_high_prio = yes
+		ai_check_interval = 60
+
+		potential = {
+			tier = EMPEROR
+			has_religion_feature = religion_cosmopolitan
+			NOT = { has_game_rule = { name = cns_pluralist value = off } }
+			is_feudal = yes
+			NOT = { government = pluralist_imperial_government }
+			NOT = { has_flag = offer_to_adopt_pluralist_imperial }  #SEE CNS_maintenance_events.txt
+		}
+
+		allow = {
+			conditional_tooltip = {  # Always allowed if the character should ALREADY be Pluralist Imperial from its primary title.
+				trigger = {
+					primary_title = { NOT = { has_flag = pluralist_empire } }
+				}
+				is_adult = yes
+				is_incapable = no
+				prisoner = no
+				war = no
+			}
+			conditional_tooltip = {  # Difficulty and cost depends on whether the title ever was a pluralist empire, and how long ago.
+				trigger = {
+					primary_title = {
+						NOT = { has_flag = pluralist_empire }
+						had_flag = { flag = was_pluralist_empire years = 10 }  # Within 10 years, completely free.
+						NOT = { had_flag = { flag = was_pluralist_empire years = 100 } }  # After a century, more difficult.
+					}
+				}
+				is_tributary = no
+				OR = {
+					conditional_tooltip = {
+						trigger = { has_dlc = "Zeus" }
+						has_law = ze_administration_laws_2
+						prestige = 1000
+					}
+					conditional_tooltip = {
+						trigger = { NOT = { has_dlc = "Zeus" } }
+						has_law = imperial_administration
+						prestige = 1000
+					}
+					AND = {
+						realm_size = 200
+						prestige = 5000
+					}
+				}
+			}
+			conditional_tooltip = {
+				trigger = {
+					primary_title = {
+						NOT = { has_flag = pluralist_empire }
+						OR = {
+							NOT = { has_flag = was_pluralist_empire }
+							had_flag = { flag = was_pluralist_empire years = 100 }
+						}
+					}
+				}
+				is_tributary = no
+				realm_size = 200
+				OR = {
+					conditional_tooltip = {  # 5K prestige with Imperial administration.
+						trigger = { has_dlc = "Zeus" }
+						has_law = ze_administration_laws_2
+						prestige = 5000
+						wealth = 200
+					}
+					conditional_tooltip = {
+						trigger = { NOT = { has_dlc = "Zeus" } }
+						has_law = imperial_administration
+						prestige = 5000
+						wealth = 200
+					}
+					AND = {  # 20K without it, and the ruler still requires a credible level of organization.
+						OR = {
+							conditional_tooltip = {
+								trigger = { has_dlc = "Zeus" }
+								has_law = ze_administration_laws_1
+								has_law = succession_voting_power_0
+							}
+							conditional_tooltip = {
+								trigger = { has_dlc = "Zeus" }
+								has_law = law_voting_power_0
+							}
+							conditional_tooltip = {
+								trigger = { NOT = { has_dlc = "Zeus" } }
+								has_law = crown_authority_3
+							}
+							custom_tooltip = {
+								text = cns_adopt_pluralist_imperialism_historically_pluralist 
+								OR = {
+									primary_title = { has_flag = was_pluralist_empire }
+									primary_title = { has_flag = historically_pluralist_empire }
+								}
+							}
+							stewardship = 20
+						}
+						prestige = 20000
+						wealth = 800
+					}
+				}
+				custom_tooltip = {
+					text = calc_true_if_2
+				}
+				calc_true_if = {
+					amount = 3  # One of the following conditional triggers will be disabled, which counts as "fulfilled".
+					conditional_tooltip = {  # Reformers get this one for free, even when they aren't the RH.
+						trigger = {
+							NOT = { government = pluralist_feudal_government }
+							religion = persistent_event_target:reformed_religion
+						}
+						custom_tooltip = {
+							text = cns_adopt_pluralist_imperialism_is_reformer
+							always = yes
+						}
+					}
+					conditional_tooltip = {  # Otherwise, check for Pluralist Feudal government.
+						trigger = {
+							NAND = {
+								NOT = { government = pluralist_feudal_government }
+								religion = persistent_event_target:reformed_religion
+							}
+						}
+						government = pluralist_feudal_government
+					}
+					custom_tooltip = {
+						text = cns_adopt_pluralist_imperialism_historically_pluralist 
+						OR = {
+							primary_title = { has_flag = was_pluralist_empire }
+							primary_title = { has_flag = historically_pluralist_empire }
+						}
+					}
+					custom_tooltip = {  # 20% of characters AND of the 10 powerful vassals have a different religion.
+						text = cns_adopt_pluralist_imperialism_religious_diversity
+						realm_character_percent = {
+							target = 0.2
+							NOR = {
+								religion = ROOT
+								is_parent_religion = ROOT
+								is_heresy_of = ROOT
+							}
+						}
+						any_vassal = {
+							higher_tier_than = BARON
+							among_most_powerful_vassals = 10
+							NOR = {
+								religion = ROOT
+								is_parent_religion = ROOT
+								is_heresy_of = ROOT
+							}
+							count = 2
+						}
+					}
+					piety = 10000
+				}
+			}
+		}
+
+		effect = {  # Prestige and piety costs are 40% of the required amount.
+			if = {
+				limit = {
+					primary_title = {
+						OR = {
+							has_flag = pluralist_empire
+							AND = {
+								has_flag = was_pluralist_empire
+								NOT = { had_flag = { flag = was_pluralist_empire years = 10 } }
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					primary_title = {
+						has_flag = was_pluralist_empire
+						NOT = { had_flag = { flag = was_pluralist_empire years = 100 } }
+					}
+				}
+				if = {
+					limit = {
+						OR = {
+							has_law = ze_administration_laws_2
+							has_law = imperial_administration
+						}
+					}
+					prestige = -400
+				} else = {
+					prestige = -2000
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						OR = {
+							has_law = ze_administration_laws_2
+							has_law = imperial_administration
+						}
+					}
+					prestige = -2000
+					wealth = -200
+				} else = {
+					prestige = -8000
+					wealth = -800
+				}
+				if = {
+					limit = {
+						NOT = {
+							calc_true_if = {
+								amount = 2
+								OR = {
+									government = pluralist_feudal_government
+									religion = persistent_event_target:reformed_religion
+								}
+								OR = {
+									primary_title = { has_flag = was_pluralist_empire }
+									primary_title = { has_flag = historically_pluralist_empire }
+								}
+								AND = {
+									realm_character_percent = {
+										target = 0.2
+										NOR = {
+											religion = ROOT
+											is_parent_religion = ROOT
+											is_heresy_of = ROOT
+										}
+									}
+									any_vassal = {
+										higher_tier_than = BARON
+										among_most_powerful_vassals = 10
+										NOR = {
+											religion = ROOT
+											is_parent_religion = ROOT
+											is_heresy_of = ROOT
+										}
+										count = 2
+									}
+								}
+							}
+						}
+					}
+					piety = -4000
+				}
+			}
+			else_if = {
+				limit = {
+					primary_title = { had_flag = { flag = was_pluralist_empire years = 10 } }
+				}
+				if = {
+					limit = {
+						OR = {
+							has_law = ze_administration_laws_2
+							has_law = imperial_administration
+						}
+					}
+					prestige = -400
+				} else = {
+					prestige = -2000
+				}
+			}
+			hidden_tooltip = {
+				any_demesne_title = {
+					limit = {
+						tier = EMPEROR
+						NOT = { has_flag = pluralist_empire }
+					}
+					set_flag = pluralist_empire
+				}
+			}
+			set_government_type = pluralist_imperial_government
+		}
+	}
+}

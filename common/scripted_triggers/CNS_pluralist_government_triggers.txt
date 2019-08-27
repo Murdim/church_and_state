@@ -2,8 +2,13 @@
 
 cns_ruler_should_use_pluralist_government = {
 	has_religion_feature = religion_cosmopolitan
-	NOT = { has_game_rule = { name = cns_pluralist value = off } }
-	is_feudal = yes  # Mainly intended for independent, hereditary rulers.
+	NOR = {
+		has_game_rule = { name = cns_pluralist value = off }
+		is_theocracy = yes  # Mainly intended for independent, hereditary rulers.
+		is_republic = yes
+		is_tribal = yes
+		is_nomadic = yes
+	}
 	OR = {
 		AND = {
 			tier = EMPEROR

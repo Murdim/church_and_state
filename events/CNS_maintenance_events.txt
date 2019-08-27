@@ -39,17 +39,17 @@ character_event = {  # On starting a new campaign. ROOT = character controlled b
 	}
 }
 
-character_event = {  # On conversion or title gain. ROOT = character.
+character_event = {  # On conversion or title gain. ROOT = character, FROM = old religion OR title.
 	id = CNS.2
 	is_triggered_only = yes
 	hide_window = yes
 	only_rulers = yes
 
 	trigger = {
-		OR = {  # Fires for rulers that are OR should be using a clergyless government.
-			cns_ruler_should_use_clergyless_government = yes  #SEE CNS_government_triggers.txt
-			cns_ruler_should_use_pluralist_government = yes
+		OR = {  # Fires for rulers that are OR should be using a clergyless / pluralist government.
+			cns_ruler_should_use_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
 			cns_ruler_is_not_using_clergyless_government = no
+			cns_ruler_should_use_pluralist_government = yes  #SEE CNS_pluralist_government_triggers.txt
 		}
 	}
 
@@ -65,11 +65,21 @@ character_event = {  # On conversion or title gain. ROOT = character.
 			set_government_type = theocracy_government  # If still clergyless, let the next steps apply the correct government.
 		}
 		if = {
-			limit = { cns_ruler_should_use_pluralist_government = yes }
+			limit = { cns_ruler_should_use_pluralist_government = yes }  #SEE CNS_pluralist_government_triggers.txt
 			cns_ruler_change_government_to_pluralist = yes  #SEE CNS_maintenance_effects.txt
+			if = {  # If Pluralist Imperial and gaining another Empire title, flag it as Pluralist Imperial as well.
+				limit = {
+					FROM = {
+						tier = EMPEROR
+						NOT = { has_flag = pluralist_empire }
+					}
+					primary_title = { has_flag = pluralist_empire }
+				}
+				FROM = { set_flag = pluralist_empire }
+			}
 		}
 		else_if = {
-			limit = { cns_ruler_should_use_clergyless_government = yes }
+			limit = { cns_ruler_should_use_clergyless_government = yes }  #SEE CNS_clergyless_government_triggers.txt
 			cns_ruler_change_government_to_clergyless = yes  #SEE CNS_maintenance_effects.txt
 			character_event = { id = CNS.3 days = 1 }  # Check the next day to fix anything that was messed up by hardcoded behavior.
 		}
@@ -124,7 +134,7 @@ character_event = {  # ROOT = Baron-tier clergyless temple holder, apply success
 		}
 		any_courtier = {
 			limit = { is_ruler = no }
-			character_event = { id = CNS.6 }
+			character_event = { id = CNS.30 }
 		}
 	}
 }
@@ -136,11 +146,228 @@ character_event = {  # On reformation, ROOT = reformer
 
 	immediate = {  # Nothing to do after selecting Non-Clerical, rulers will already adapt their government on conversion.
 		clr_flag = clergyless_religion  # This should NOT be set on a feature-using religion; remove it, just in case.
+		save_persistent_event_target = { name = reformed_religion scope = religion_scope }
+	}
+}
+
+character_event = {  # On conversion. ROOT = formerly pluralist emperor.
+	id = CNS.10
+	is_triggered_only = yes
+	hide_window = yes
+	only_playable = yes
+
+	trigger = {
+		tier = EMPEROR
+		primary_title = { has_flag = pluralist_empire }
+		cns_ruler_should_use_pluralist_government = no  #SEE CNS_pluralist_government_triggers.txt
+	}
+
+	immediate = {
+		any_demesne_title = {
+			limit = {
+				tier = EMPEROR
+				has_flag = pluralist_empire
+			}
+			clr_flag = pluralist_empire
+			set_flag = was_pluralist_empire
+		}
+	}
+}
+
+character_event = {  # On title gain. ROOT = non-pluralist ruler, FROM = Pluralist Imperial title, FROMFROM = previous holder.
+	id = CNS.11
+	is_triggered_only = yes
+	hide_window = yes
+	only_playable = yes
+
+	trigger = {
+		FROM = {
+			tier = EMPEROR
+			has_flag = pluralist_empire
+		}
+		cns_ruler_should_use_pluralist_government = no  #SEE CNS_pluralist_government_triggers.txt
+		NOT = { has_game_rule = { name = cns_pluralist value = off } }
+	}
+
+	immediate = {
+		if = {  # If Feudal, offer to adopt the Pluralist Empire as primary title, switching religion if needed.
+			limit = {
+				NOR = {
+					has_flag = offer_to_adopt_pluralist_imperial
+					is_theocracy = yes
+					is_republic = yes
+					is_tribal = yes
+					is_nomadic = yes
+				}
+			}
+			set_flag = offer_to_adopt_pluralist_imperial
+			repeat_event = { id = CNS.12 days = 1 }  # Wait one day in case ROOT becomes a player character.
+		}
+		else = {  # If not Feudal, a RH, or already considering such an offer, just clear the flag.
+			FROM = {
+				clr_flag = pluralist_empire
+				set_flag = was_pluralist_empire
+			}
+		}
+	}
+}
+
+character_event = {  # ROOT = non-pluralist ruler, FROM = Pluralist Imperial title, FROMFROM = previous holder.
+	id = CNS.12
+	desc = EVTDESCCNS12
+	picture = GFX_evt_religious_exultation
+	border = GFX_event_normal_frame_religion
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOR = {
+					has_religion_feature = religion_cosmopolitan
+					secret_religion_scope = { has_religion_feature = religion_cosmopolitan }
+				}
+			}
+			FROMFROM = {
+				if = {
+					limit = { has_religion_feature = religion_cosmopolitan }
+					religion_scope = { save_event_target_as = pluralist_religion }
+				}
+			}
+			FROM = { capital_scope = { save_event_target_as = metonym } }
+			if = {
+				limit = { NOT = { event_target:pluralist_religion = { always = yes } } }
+				random_dynasty_member_even_if_dead = {  # Since previous_holder scopes are bugged, use ROOT's dynasty instead...
+					limit = { has_religion_feature = religion_cosmopolitan }
+					preferred_limit = {
+						religion_scope = {
+							ROOT = {
+								OR = {
+									religion_group = PREV
+									true_religion_group = PREV
+									has_sympathy_for_true_religion_of_prev_trigger = yes
+								}
+							}
+						}
+					}
+					religion_scope = { save_event_target_as = pluralist_religion }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = {
+			text = EVTOPTACNS12_already_cosmopolitan
+			trigger = { has_religion_feature = religion_cosmopolitan }
+		}
+		name = {
+			text = EVTOPTACNS12_secretly_cosmopolitan
+			trigger = { secret_religion_scope = { has_religion_feature = religion_cosmopolitan } }
+		}
+		name = {
+			text = EVTOPTACNS12_convert_to_cosmopolitan
+			trigger = {
+				NOR = {
+					has_religion_feature = religion_cosmopolitan
+					secret_religion_scope = { has_religion_feature = religion_cosmopolitan }
+				}
+			}
+		}
+		trigger = {
+			OR = {
+				has_religion_feature = religion_cosmopolitan
+				AND = {  # If this requires a public conversion, check if ROOT can actually do that.
+					can_change_religion = yes
+					OR = {
+						secret_religion_scope = { has_religion_feature = religion_cosmopolitan }
+						event_target:pluralist_religion = {
+							has_religion_feature = religion_cosmopolitan
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_religion_feature = religion_cosmopolitan }
+				secret_religion_scope = { has_religion_feature = religion_cosmopolitan }
+			}
+			convert_to_secret_religion = yes
+		}
+		else_if = {
+			limit = {
+				event_target:pluralist_religion = {
+					has_religion_feature = religion_cosmopolitan
+				}
+			}
+			piety = -250
+			religion = event_target:pluralist_religion
+		}
+		any_demesne_title = {
+			limit = {
+				tier = EMPEROR
+				NOT = { has_flag = pluralist_empire }
+			}
+			set_flag = pluralist_empire
+		}
+		set_government_type = pluralist_imperial_government
+		ai_chance = {
+			factor = 20
+		}
+	}
+
+	option = {
+		name = EVTOPTBCNS12
+		hidden_tooltip = {
+			any_demesne_title = {
+				limit = {
+					tier = EMPEROR
+					has_flag = pluralist_empire
+				}
+				clr_flag = pluralist_empire
+				set_flag = was_pluralist_empire
+			}
+		}
+		ai_chance = {
+			factor = 80
+			modifier = {  # Openly or secretly Cosmopolitan AI rulers always accept.
+				factor = 0
+				OR = {
+					has_religion_feature = religion_cosmopolitan
+					secret_religion_scope = { has_religion_feature = religion_cosmopolitan }
+				}
+			}
+			modifier = {
+				factor = 0.5
+				trait = cynical
+			}
+			modifier = {
+				factor = 0.25
+				event_target:pluralist_religion = {
+					ROOT = {
+						OR = {
+							religion_group = PREV
+							true_religion_group = PREV
+							has_sympathy_for_true_religion_of_prev_trigger = yes
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 10
+				trait = zealous
+			}
+		}
+	}
+
+	after = {
+		clr_flag = offer_to_adopt_pluralist_imperial
 	}
 }
 
 character_event = {  # On death of a clergyless temple holder, disqualify courtiers from succession.
-	id = CNS.6
+	id = CNS.30
 	is_triggered_only = yes
 	hide_window = yes
 
@@ -160,7 +387,7 @@ character_event = {  # On death of a clergyless temple holder, disqualify courti
 					}
 				}
 				prestige = 10000
-				character_event = { id = CNS.7 days = 1 }  # Reset their prestige the next day.
+				character_event = { id = CNS.31 days = 1 }  # Reset their prestige the next day.
 			}
 			else_if = {
 				limit = {
@@ -175,7 +402,7 @@ character_event = {  # On death of a clergyless temple holder, disqualify courti
 					}
 				}
 				prestige = -10000
-				character_event = { id = CNS.8 days = 1 }  # Restore their prestige the next day.
+				character_event = { id = CNS.32 days = 1 }  # Restore their prestige the next day.
 			}
 		}
 		recalc_succession = yes
@@ -183,16 +410,15 @@ character_event = {  # On death of a clergyless temple holder, disqualify courti
 }
 
 character_event = {
-	id = CNS.7
+	id = CNS.31
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = { prestige = -10000 }
 }
 
 character_event = {
-	id = CNS.8
+	id = CNS.32
 	is_triggered_only = yes
 	hide_window = yes
 	immediate = { prestige = 10000 }
 }
-
