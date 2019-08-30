@@ -92,3 +92,41 @@ decisions = {
 		}
 	}
 }
+
+targeted_decisions = {
+	cns_recruit_temple_holder_as_spiritual = {
+		only_playable = yes
+		ai = no
+		filter = vassals
+
+		from_potential = {
+			cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+		}
+
+		potential = {
+			tier = BARON
+			government = clergyless_temple_government
+			religion = FROM
+		}
+
+		allow = {
+			FROM = {
+				piety = 25
+				custom_tooltip = {
+					text = cns_recruit_temple_holder_as_spiritual_cooldown
+					NOT = { has_any_opinion_modifier = cns_recruited_temple_holder }
+				}
+			}
+		}
+
+		effect = {
+			hidden_tooltip = {
+				reverse_opinion = { modifier = cns_recruited_temple_holder who = FROM }
+				character_event = { id = CNS.30 }  #SEE CNS_maintenance_events.txt
+				abdicate = yes
+			}
+			move_character = FROM
+			give_job_title = job_spiritual
+		}
+	}
+}

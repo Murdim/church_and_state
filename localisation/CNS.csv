@@ -43,6 +43,9 @@ tooltip_religion_feature_head_is_destroyed;§YThe religious head title is disable
 cns_employ_delegate;Recruit Religious Delegate;Embaucher un représentant religieux;;;;;;;;;;;;x
 cns_employ_delegate_desc;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
 cns_employ_delegate_tooltip;Send out messengers in order to find a candidate for the position of §YDelegate§! among the non-[This.Religion.GetName] population.;Envoyer des messagers afin de trouver un candidat pour le poste de §Yreprésentant§! parmi la population non-[This.Religion.GetName].;;;;;;;;;;;x
+cns_recruit_temple_holder_as_spiritual;Recruit [From.GetLordSpiritualName];Désigner [From.GetLordSpiritualName];;;;;;;;;;;;x
+cns_recruit_temple_holder_as_spiritual_desc;Recruit [Root.GetTitledName] as your new [From.GetLordSpiritualName].;Recruter [Root.GetTitledName] au poste de [From.GetLordSpiritualName].;;;;;;;;;;;;x
+cns_recruit_temple_holder_as_spiritual_cooldown;Has not recruited a temple holder in the past 10 years.;N'a pas utilisé cette action dans les 10 dernières années.;;;;;;;;;;;;x
 # decisions/CNS_employment_decisions.txt
 cns_adopt_pluralist_imperialism;Adopt Pluralist Imperialism;Adopter l'impérialisme pluraliste;;;;;;;;;;;;x
 cns_adopt_pluralist_imperialism_desc;Reform your realm into an empire founded on religious tolerance.;Réformer votre royaume en un empire fondé sur la tolérance religieuse.;;;;;;;;;;;;x

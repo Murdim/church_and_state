@@ -4,3 +4,9 @@ cns_wrong_government = {
 	opinion = -20
 	months = 1
 }
+
+cns_recruited_temple_holder = {
+        opinion = 0
+	years = 10
+}
+
