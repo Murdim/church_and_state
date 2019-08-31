@@ -58,4 +58,9 @@ cns_guardian = {
 		text = "RULE_OPTION_OFF"
 		desc = "RULE_CNS_GUARDIAN_OFF"
 	}
+	option = {
+		name = unrestricted
+		text = "RULE_OPTION_UNRESTRICTED"
+		desc = "RULE_CNS_GUARDIAN_UNRESTRICTED"
+	}
 }

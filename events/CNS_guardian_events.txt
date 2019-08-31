@@ -15,8 +15,9 @@ character_event = {  # Randomy on five year pulse. ROOT = character.
 	is_triggered_only = yes
 	
 	trigger = {
-		has_game_rule = { name = cns_guardian value = on }
+		NOT = { has_game_rule = { name = cns_guardian value = off } }
 		OR = {  # Clergyless religion that does not already use Hafiz, INCLUDING randomized Muslims.
+			has_game_rule = { name = cns_guardian value = unrestricted }
 			cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
 			AND = {
 				has_alternate_start_parameter = { key = religion_names value = random }
@@ -174,7 +175,7 @@ character_event = {  # On yearly pulse. ROOT = aspiring hafiz from the vanilla c
 	has_character_flag = aspiring_hafiz_flag
 
 	immediate = {  # Override the 2nd step of the vanilla hafiz chain and replace it with our own.
-		has_game_rule = { name = cns_guardian value = on }
+		NOT = { has_game_rule = { name = cns_guardian value = off } }
 		clr_character_flag = aspiring_hafiz_flag
 		if = {
 			limit = {
@@ -290,7 +291,7 @@ character_event = {  # On title gain or session start, ROOT = character.
 	}
 }
 
-character_event = {  # On character generation, ROOT = character.
+character_event = {  # On character generation, ROOT = character, FROMFROM = host.
 	id = CNS.206
 	is_triggered_only = yes
 	hide_window = yes
@@ -298,9 +299,16 @@ character_event = {  # On character generation, ROOT = character.
 	min_age = 16
 
 	trigger = {
-		NOT = { FROM = { character = yes } }
-		has_game_rule = { name = cns_guardian value = on }
-		cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+		NOT = { FROM = { character = yes } }  # Only for characters with NO previous host.
+		NOT = { has_game_rule = { name = cns_guardian value = off } }
+		OR = {  # Clergyless religion that does not already use Hafiz, INCLUDING randomized Muslims.
+			has_game_rule = { name = cns_guardian value = unrestricted }
+			cns_religion_uses_clergyless_government = yes  #SEE CNS_clergyless_government_triggers.txt
+			AND = {
+				has_alternate_start_parameter = { key = religion_names value = random }
+				religion_group = muslim
+			}
+		}
 		OR = { 
 			has_education_learning_trigger = yes
 			has_lifestyle_learning_trigger = yes
