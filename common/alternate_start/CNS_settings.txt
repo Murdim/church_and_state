@@ -1,0 +1,12 @@
+#CNS-FILE
+
+clergyless_doctrine_random = {
+	type = selection
+	trigger = {
+		has_alternate_start_parameter = { key = religion_features value = random }
+	}
+	random_default = included
+
+	included = { clergyless_doctrine_random = included }
+	excluded = { clergyless_doctrine_random = excluded }
+}

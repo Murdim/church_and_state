@@ -1,5 +1,12 @@
 #CNS-FILE
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
+# common/alternate_start/CNS_settings.txt
+setting_clergyless_doctrine_random;Non-Clerical Doctrine;Droit divin (doctrine);;;;;;;;;;;;x
+setting_clergyless_doctrine_random_tooltip;Determines how the Non-Clerical doctrine should be used when religions are randomized. Note that the doctrine is incompatible with religions based on Catholicism, Islam, or Hinduism.;Détermine l'utilisation de la doctrine Non-clérical lorsque les caractéristiques des religions sont aléatoirisées. Remarque : la doctrine est incompatible avec les religions basées sur le catholicisme, l'islam ou l'hindouïsme.;;;;;;;;;;;;x
+setting_clergyless_doctrine_random_included;Included;Incluse;;;;;;;;;;;;x
+setting_clergyless_doctrine_random_included_tooltip;The Non-Clerical doctrine can be selected as a random religion feature.;La doctrine Non-clérical peut être choisie lors de la génération des religions alétoires.;;;;;;;;;;;;x
+setting_clergyless_doctrine_random_excluded;Excluded;Exclue;;;;;;;;;;;;x
+setting_clergyless_doctrine_random_excluded_tooltip;The Non-Clerical doctrine will never be selected as a random religion feature.;La doctrine Non-clérical ne sera jamais choisie lors de la génération des religions alétoires.;;;;;;;;;;;x
 # common/event_modifiers/CNS_guardian_modifiers.txt
 cns_hafiz;[From.GetGuardianTrait];;;;;;;;;;;;;x
 cns_guardian_bible;[From.GetGuardianTrait];;;;;;;;;;;;;x

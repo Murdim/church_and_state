@@ -47,7 +47,7 @@ defined_text = {
 defined_text = {  # THIS = councilor most of the time, but before giving the title, it could be the liege, nothing, or...
 	name = Non-Clerical  # ... the command block might not be interpreted AT ALL, displaying [Non-Clerical], hence the readable name.
 	use_first_valid = yes
-	text = {  # Can't be sure if the player is looking at the Advisor title received from their liege, or their own empty Advisor slot...
+	text = {  # This player could be looking at the Advisor title they received from their liege, OR their own empty Advisor slot.
 		trigger = {
 			ai = no
 			has_minor_title = title_councilmember_clergyless
@@ -133,7 +133,7 @@ defined_text = {  # THIS = councilor most of the time, but before giving the tit
 		}
 		localisation_key = title_councilmember_clergyless_censor
 	}
-	fallback_text = {  # Non-Clerical Advisor if the scope is wrong...
+	fallback_text = {  # Non-Clerical Advisor if the scope is wrong, or the religion does not have a vanilla nature.
 		localisation_key = title_councilmember_clergyless_fallback
 	}
 }

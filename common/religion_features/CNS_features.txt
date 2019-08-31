@@ -67,7 +67,7 @@ religion_doctrine = {
 			factor = 1
 			modifier = {
 				factor = 0
-				has_alternate_start_parameter = { key = clergyless_religions_random value = excluded }
+				has_alternate_start_parameter = { key = clergyless_doctrine_random value = excluded }
 			}
 			modifier = {  # Should be rare in Random Worlds.
 				factor = 0.2
