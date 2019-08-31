@@ -222,7 +222,7 @@ feudal_governments = {
 			theocratic_feudal_government
 		}
 		potential = {
-			cns_ruler_should_use_pluralist_government = yes
+			cns_ruler_should_use_pluralist_government = yes  #SEE CNS_pluralist_government_triggers.txt
 			NOT = { primary_title = { has_flag = pluralist_empire } }
 			NOT = { is_government_potential = roman_imperial_government }
 			NOT = { is_government_potential = order_government }
@@ -267,7 +267,7 @@ feudal_governments = {
 		}
 		frame_suffix = "_chineseimperial"  #TODO
 		potential = {
-			cns_ruler_should_use_pluralist_government = yes
+			cns_ruler_should_use_pluralist_government = yes  #SEE CNS_pluralist_government_triggers.txt
 			primary_title = { has_flag = pluralist_empire }
 			NOT = { is_government_potential = roman_imperial_government }
 			NOT = { is_government_potential = order_government }

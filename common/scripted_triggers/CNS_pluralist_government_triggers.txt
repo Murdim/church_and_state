@@ -42,4 +42,5 @@ cns_ruler_should_use_pluralist_government = {
 			}
 		}
 	}
+	is_government_potential = feudal_government  # Prevent non-temporal RHs from using these feudal government types.
 }
