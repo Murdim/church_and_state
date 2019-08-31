@@ -11,6 +11,11 @@ decisions = {
 			has_religion_feature = religion_cosmopolitan
 			NOT = { has_game_rule = { name = cns_pluralist value = off } }
 			is_feudal = yes
+			OR = {  # Exclude OTHER special government types like Chinese Imperial.
+				is_government_potential = feudal_government
+				is_government_potential = muslim_government
+				is_government_potential = theocratic_feudal_government
+			}
 			NOT = { government = pluralist_imperial_government }
 			NOT = { has_flag = offer_to_adopt_pluralist_imperial }  #SEE CNS_maintenance_events.txt
 		}

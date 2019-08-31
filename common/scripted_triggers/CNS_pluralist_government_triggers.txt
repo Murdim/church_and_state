@@ -42,5 +42,9 @@ cns_ruler_should_use_pluralist_government = {
 			}
 		}
 	}
-	is_government_potential = feudal_government  # Prevent non-temporal RHs from using these feudal government types.
+	OR = {  # Prevent non-temporal RHs from using these feudal government types.
+		is_government_potential = feudal_government
+		is_government_potential = muslim_government
+		is_government_potential = theocratic_feudal_government
+	}
 }
