@@ -75,7 +75,10 @@ religion_doctrine = {
 			}
 			modifier = {  # Avoid poor synergies + bugged trigger on AI reformation w/ autonomous leadership.
 				factor = 0
-				cns_religion_features_compatible_with_clergyless_no_head_priest = no
+				OR = {
+					cns_religion_features_compatible_with_clergyless_no_head_priest = no
+					cns_religion_features_suitable_for_clergyless = no
+				}
 			}
 			modifier = {
 				factor = 0

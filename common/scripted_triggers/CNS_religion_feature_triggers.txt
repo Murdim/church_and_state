@@ -3,15 +3,20 @@
 # Undefined triggers return false when used REGARDLESS of the right-hand side (yes/no), while extended triggers will simply go unused.
 # On the other hand, directly testing for game entities that do not exist might cause crashes, especially when it causes tooltip creation to fail.
 
-# Features that require an theocratic clergy to function properly are incompatible with this mod and should be registered here.
+# Features that absolutely require a theocratic clergy to function properly should be registered here.
 # Extend this trigger with an appropriate NOT clause, then add the following line to the feature's own trigger condition:
-# cns_religion_features_clergyless = no  #MOD church_and_state CNS_religion_feature_triggers.txt
+# NOT = { cns_religion_features_clergyless = yes }  #MOD church_and_state CNS_religion_feature_triggers.txt
 cns_religion_features_compatible_with_clergyless = { }
 
-# Features that can work without a proper clergy but do require a priestly religious head should be registered here.
+# Features that can work without a proper clergy but absolutely require a priestly religious head should be registered here.
 # Extend this trigger with an appropriate NOT clause, then add the following line to the feature's own trigger condition:
-# cns_religion_features_clergyless_no_priest = no  #MOD church_and_state CNS_religion_feature_triggers.txt
+# NOT = { cns_religion_features_clergyless_no_priest = yes }  #MOD church_and_state CNS_religion_feature_triggers.txt
 cns_religion_features_compatible_with_clergyless_no_head_priest = { }
+
+# Features that are NOT strictly incompatible with clergyless religions but are poorly suited for them should be registered here.
+# Extend this trigger with an appropriate NOT clause, then add a condition to lower the feature's ai_will_do weight:
+# NOT = { cns_religion_features_clergyless = yes }  #MOD church_and_state CNS_religion_feature_triggers.txt
+cns_religion_features_suitable_for_clergyless = { }
 
 cns_religion_features_clergyless = {
 	OR = {
