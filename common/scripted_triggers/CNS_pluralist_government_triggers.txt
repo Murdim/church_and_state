@@ -19,6 +19,7 @@ cns_ruler_should_use_pluralist_government = {
 			OR = {
 				controls_religion = yes
 				AND = {
+					higher_tier_than = DUKE
 					trait = crowned_by_pope  # Must be crowned by the Pope of your CURRENT religion.
 					conditional_tooltip = {  #MOD divine_right_doctrine: compare with the religion saved at coronation.
 						trigger = {
