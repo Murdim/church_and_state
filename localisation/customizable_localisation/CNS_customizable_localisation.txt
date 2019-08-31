@@ -187,3 +187,17 @@ defined_text = {
 	fallback_text = {
 		localisation_key = EVTOPTACNS12_ceremony_default
 	}
+}
+
+defined_text = {  # Unused, l10 commands do not work at all on the Game Rules screen.
+	name = GetStaticClergylessReligions
+	text = {
+		trigger = {
+			has_alternate_start_parameter = { key = religion_features value = random }
+		}
+		localisation_key = static_clergyless_religions_none_random_features
+	}
+	fallback_text = {
+		localisation_key = static_clergyless_religions_list
+	}
+}

@@ -1,4 +1,3 @@
-# vim: set fileencoding=latin1
 #CNS-FILE
 #CODE;ENGLISH;FRENCH;GERMAN;;SPANISH;;;;;;;;;x
 # common/event_modifiers/CNS_guardian_modifiers.txt
@@ -6,6 +5,25 @@ cns_hafiz;[From.GetGuardianTrait];;;;;;;;;;;;;x
 cns_guardian_bible;[From.GetGuardianTrait];;;;;;;;;;;;;x
 cns_guardian_torah;[From.GetGuardianTrait];;;;;;;;;;;;;x
 cns_guardian_generic;[From.GetGuardianTrait];;;;;;;;;;;;;x
+# common/game_rules/DRD_game_rules.txt
+RULE_GROUP_CNS;Church and State;Église et État;;;;;;;;;;;;x
+RULE_OPTION_BOTH;Both;Les deux;;;;;;;;;;;;x
+RULE_OPTION_DOCTRINE;Doctrine;Doctrine;;;;;;;;;;;;x
+RULE_OPTION_IMPERIAL;Imperial Only;Impérial uniquement;;;;;;;;;;;;x
+RULE_OPTION_STATIC;Static;Statique;;;;;;;;;;;;x
+RULE_CNS_CLERGYLESS;§ZChurch and State:§! Clergyless Governments;§ZÉglise et État :§! Gouvernements sans clergé;;;;;;;;;;;;x
+RULE_CNS_CLERGYLESS_BOTH;The Pious Feudal and Secular Feudal government types are used by religions with the Non-Clerical doctrine, as well as a static list of unreformed religions (unless they already use random features).;Les types de gouvernement Féodalité pieuse et Féodalité laïque sont utilisés par les religions utilisant la doctrine Non-clérical, et par une liste statique de religions non-réformées (sauf caractéristiques aléatoires).;;;;;;;;;;;;x
+RULE_CNS_CLERGYLESS_DOCTRINE;The Pious Feudal and Secular Feudal government types are used by religions with the Non-Clerical doctrine.;Les types de gouvernement Féodalité pieuse et Féodalité laïque sont utilisés par les religions utilisant la doctrine Non-clérical.;;;;;;;;;;;;x
+RULE_CNS_CLERGYLESS_STATIC;The Pious Feudal government type is restricted to the following religions, and only if they do not already have access to random features: Lollard, Waldensian, Paulician, Jewish, Karaite.;Le type de gouvernement Féodalité pieuse est restreint aux religions suivantes, et uniquement si elles n'ont pas déjà accès à des caractéristiques alétoires: lollarde, vaudoise, paulicienne, juive, karaïte.;;;;;;;;;;;;x
+RULE_CNS_CLERGYLESS_OFF;The Pious Feudal and Secular Feudal government types are disabled.;Les types de gouvernement Féodalité pieuse et Féodalité laïque sont désactivés.;;;;;;;;;;;;x
+RULE_CNS_PLURALIST;§ZChurch and State:§! Pluralist Governments;§ZÉglise et État :§! Gouvernements pluralistes;;;;;;;;;;;;x
+RULE_CNS_PLURALIST_ON;Cosmopolitan religions give access to Pluralist government types: Feudal for temporal religious heads, and Imperial by decision.;Les religions cosmopolitaines donnent accès aux types de gouvernement pluralistes: Féodalité pour les chefs religieux temporels, et Impérial via une décision.;;;;;;;;;;;;x
+RULE_CNS_PLURALIST_IMPERIAL;Cosmopolitan religions give access to the Pluralist Imperial government type by decision.;Les religions cosmopolitaines donnent accès au type de gouvernement Impérial pluraliste via une décision.;;;;;;;;;;;;x
+RULE_CNS_PLURALIST_OFF;The Pluralist Feudal and Pluralist Imperial government types are disabled.;Les types de gouvernement Féodalité pluraliste et Impérial pluraliste sont désactivés.;;;;;;;;;;;;x
+RULE_CNS_GUARDIAN;§ZChurch and State:§! Guardians of Scripture;§ZÉglise et État :§! Gardiens des Écritures;;;;;;;;;;;;x
+RULE_CNS_GUARDIAN_ON;The Hafiz trait has stronger effects. A variant of it is also available to other clergyless religions, including Muslim-based random religions.;Les effets du trait Hafiz sont plus marqués. Une variante est également disponible pour les religions sans clergé, y compris les religions aléatoires basées sur l'Islam.;;;;;;;;;;;;x
+RULE_CNS_GUARDIAN_OFF;The Hafiz trait is unchanged. Muslim-based random religions do not allow characters to obtain it.;Les effets du trait Hafiz sont inchangés. Les religions aléatoires basées sur l'Islam ne permettent pas de l'obtenir.;;;;;;;;;;;;x
+RULE_CNS_GUARDIAN_UNRESTRICTED;The Hafiz trait has stronger effects. A variant of it is also available to every non-Pagan or reformed religion.;Les effets du trait Hafiz sont plus marqués. Une variante est également disponible pour toutes les religions non-païennes ou réformées.;;;;;;;;;;;;x
 # common/governments/CNS_feudal_governments.txt
 clergyless_feudal_government;Pious Feudal;Féodalité pieuse;;;;;;;;;;;;x
 clergyless_feudal_government_desc;The Pious Feudal government, much like the ordinary Feudal government, revolves around the oath between liege and vassal, with an additional emphasis on the spiritual responsibilities of the rulers over their subjects. It is available to Non-Clerical religions and allows holding Temples in addition to Castles. It effectively replaces Theocracies for these religions, except for the religious head and their vassals if they exist.;Le gouvernement féodal pieux, tout comme le gouvernement féodal ordinaire, repose sur un serment entre le seigneur lige et le vassal, avec un accent mis sur les réponsabilités spirituelles des dirigeants envers leurs sujets. Il est spécifique aux religions non-cléricales et permet de détenir des temples en plus des châteaux. Il remplace en pratique les théocraties pour ces religions, hormis pour le chef religieux et ses vassaux s'il existe.;;;;;;;;;;;;x
@@ -64,11 +82,11 @@ aspiring_hafiz_desc;Committing [This.Religion.GetScriptureName] to memory.;Engag
 EVTDESCCNS203;My mind is filled with the wisdom of [This.Religion.GetScriptureName]. Every divine commandment is now within reach of my memory, always by my side, ready to guide me on any matter of faith.;Mon esprit est empli de la sagesse [This.Get_du_Scripture]. Chacun de ses commandements divins est désormais à portée de mémoire, toujours à mes côtés, prêt à me guider sur toute question de foi.;;;;;;;;;;;;x
 EVTOPTACNS203;I will remember these words until my death.;Je me souviendrai de ces mots jusqu'à ma mort.;;;;;;;;;;;;x
 # events/CNS_maintenance_events.txt
-EVTDESCCNS12;[FromFrom.GetTitledFirstName] ruled the [From.GetFullName] in the spirit of religious pluralism. Many call for me to continue [FromFrom.GetHerHis] tolerant ways, but I am not so sure.;[FromFrom.GetTitledFirstName] a dirigé [From.Get_du_RealmFull] dans un esprit de pluralisme religieux. Nombreux sont ceux à me demander de maintenir son attitude tolérante.
+EVTDESCCNS12;[FromFrom.GetTitledFirstName] ruled the [From.GetFullName] in the spirit of religious pluralism. Many call for me to continue [FromFrom.GetHerHis] tolerant ways, but I am not so sure.;[FromFrom.GetTitledFirstName] a dirigé [From.Get_du_RealmFull] dans un esprit de pluralisme religieux. Nombreux sont ceux à me demander de maintenir son attitude tolérante.;;;;;;;;;;;;x
 EVTOPTACNS12_already_cosmopolitan;I will preserve the traditions of [From.GetName].;Je préserverai les traditions [From.Get_du_Realm].;;;;;;;;;;;;x
 EVTOPTACNS12_secretly_cosmopolitan;I can finally profess my [Root.Religion.GetName] faith.;Je peux enfin professer ma foi [Root.Religion.GetName].;;;;;;;;;;;;x
 EVTOPTACNS12_convert_to_cosmopolitan;[metonym.GetName] is well worth [EVTOPTACNS12Ceremony]...;[metonym.GetName] vaut bien [EVTOPTACNS12Ceremony]...;;;;;;;;;;;;x
-EVTOPTBCNS12;No. [From.GetAdjective] pluralism ended with my [FromFrom.GetRootRelation]'s reign.;Non. Le pluralisme [From.GetAdjective] a pris fin en même temps que le règne de m[FromFrom.GetOnA] [FromFrom.GetRootRelation].
+EVTOPTBCNS12;No. [From.GetAdjective] pluralism ended with my [FromFrom.GetRootRelation]'s reign.;Non. Le pluralisme [From.GetAdjective] a pris fin en même temps que le règne de m[FromFrom.GetOnA] [FromFrom.GetRootRelation].;;;;;;;;;;;;x
 # localisation/customizable_localisation/CNS_customizable_localisation.txt
 guardian_hafiz;Hafiz;Hafiz;Hafiz;;Hafiz;;;;;;;;;x
 guardian_scripture;Guardian of [This.Religion.GetScriptureName];Gardie[This.GetNNne] [This.Get_du_Scripture];;;;;;;;;;;;x
@@ -93,6 +111,8 @@ title_councilmember_clergyless_censor_desc;The Censor is a respected member of t
 title_councilmember_clergyless_fallback_desc;;;;;;;;;;;;;;x
 EVTOPTACNS12_ceremony_mass;a mass;une messe;;;;;;;;;;;;x
 EVTOPTACNS12_ceremony_default;a [pluralist_religion.GetName] ceremony;une cérémonie [pluralist_religion.GetName];;;;;;;;;;;;x
+static_clergyless_religions_none_random_features;§Rnone§!, religion features have been randomized;§Raucune§!, les caractéristiques des religions sont aléatoires;;;;;;;;;;;;x
+static_clergyless_religions_list;[lollard.GetName], [waldensian.GetName], [paulician.GetName], [jewish.GetName], [karaite.GetName];;;;;;;;;;;;;x
 # Overrides
 temple_baron_jewish_group;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
 temple_baron_jewish;Kohen;Cohen;Kohen;;Kohen;;;;;;;;;x
