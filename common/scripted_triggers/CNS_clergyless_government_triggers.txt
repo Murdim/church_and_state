@@ -153,6 +153,4 @@ pmo_can_hire_councilmember_clergyless = {
 		is_feudal = yes
 		is_republic = yes
 	}
-	NOT = { has_assigned_minor_title = title_councilmember_clergyless }
-	NOT = { has_flag = recruiting_delegate }
 }
