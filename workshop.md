@@ -1,6 +1,6 @@
 # Church and State: Lay and Pluralist religions
 
-**Add new government types that allow religions to use temporal temple holders and/or encourage religious pluralism.**
+**Add new government types that allow religions to use temporal temple holders, encourage religious pluralism, or both.**
 
 This mod provides the following **game rules**:
 
