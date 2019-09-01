@@ -265,7 +265,6 @@ feudal_governments = {
 			muslim_government
 			theocratic_feudal_government
 		}
-		frame_suffix = "_chineseimperial"  #TODO
 		potential = {
 			cns_ruler_should_use_pluralist_government = yes  #SEE CNS_pluralist_government_triggers.txt
 			primary_title = { has_flag = pluralist_empire }

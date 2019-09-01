@@ -68,14 +68,10 @@ cns_vassal_accepts_prev_secular_feudal_government = {
 	OR = {
 		cns_government_group_based_liege_acceptance = no
 		is_feudal = yes
-		AND = {
+		AND = {  # Kings of Israel can have Theocratic vassals.
 			is_theocracy = yes
-			OR = {
-				AND = {  # Kings of Israel can have Theocratic vassals.
-					religion_group = jewish_group
-					PREV = { has_landed_title = k_israel }
-				}
-			}
+			religion_group = jewish_group
+			PREV = { has_landed_title = k_israel }
 		}
 		AND = {
 			is_tribal = yes
