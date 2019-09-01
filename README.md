@@ -21,7 +21,7 @@ Non-clericalism affects religious heads in the following ways:
 
 ### Non-Clerical Governments
 
-These governments use a separate compatibility mechanic from vanilla, defined in [`CNS_government_opinion_triggers.txt`](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies (except Isrealite ones for the King of Israel).
+These governments use a separate compatibility mechanic from vanilla, defined with [scripted triggers](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies (except Isrealite ones for the King of Israel).
 
 Infidel taxes prevent Cosmopolitan religions from using Secular (instead of Pious) Feudal. They still have access to the "true" Pluralist governments.
 
@@ -69,7 +69,7 @@ This mod was developed for Crusader Kings 2 v3.2.1, and should remain compatible
 
 It should also be compatible with most other mods, with the following caveats:
 
- - Mods that rely on landed priests may work poorly with Non-Clerical religions. Follow the instructions in [this file](common/scripted_triggers/CNS_religion_feature_triggers.txt) to prevent incompatibilites.
+ - Mods that rely on landed priests may work poorly with Non-Clerical religions. Follow the instructions in [this file](common/scripted_triggers/CNS_religion_feature_triggers.txt) to avoid incompatible doctrine choices.
  - New government types may conflict with those from this mod. This should be fixed with a compatibility patch to the government maintenance [events](events/CNS_maintenance_events) and [effects](common/scripted_effects/CNS_maintenance_effects).
 
 ### CK2 Overrides
