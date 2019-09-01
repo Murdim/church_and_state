@@ -1,6 +1,6 @@
 # Church and State: Lay and Pluralist religions
 
-**Adds new government types with features that are Iqta-like and/or encourage religious pluralism**
+**Add new government types that allow religions to use temporal temple holders and/or encourage religious pluralism.**
 
 This mod provides the following **game rules**:
 
