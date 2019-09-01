@@ -13,7 +13,7 @@ This mod provides the following **game rules**:
 
 ## Pluralist Governments
 
-The **Pluralist Feudal** government is used by Cosmopolitan Temporal heads and kings with the top-tier Crowned trait. It eliminates religious opinion penalties between liege and vassal.
+The **Pluralist Feudal** government is used by Cosmopolitan Temporal heads and kings with the top-tier Crowned trait. It eliminates religious opinion penalties between liege and vassal, allows interfaith marriages, and forbids rulers from demanding religious conversion.
 
 Cosmopolitan emperors can adopt **Pluralist Imperialism** by decision, which combines the above features with those associated with Imperial governments.
 
@@ -24,7 +24,7 @@ By default, **both** of these government types are enabled. Generally intended f
 
 The **Pious Feudal** government type is available to non-clerical religions. Like Iqta for Muslims, it effectively replaces the Feudal and Theocracy governments, allowing rulers to hold both Castles and Temples.
 
-Cosmopolitan, non-clerical religions may use the **Secular Feudal** government instead, which also removes religious opinion penalties between liege and vassal.
+Cosmopolitan, non-clerical religions may use the **Secular Feudal** government instead, combining Non-Clerical and Pluralist features.
 
 By default, there are **two** ways for a religion to be non-clerical:
 
