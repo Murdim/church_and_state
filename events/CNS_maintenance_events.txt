@@ -21,6 +21,7 @@ character_event = {  # On starting a new campaign. ROOT = character controlled b
 			cns_set_clergyless_religion_flags = yes  #SEE CNS_maintenance_effects.txt
 			cns_deactivate_religion_heads = yes
 		}
+		cns_set_historically_pluralist_flags = yes  #SEE CNS_maintenance_effects.txt
 		any_character = {
 			limit = { is_ruler = yes }
 			if = {

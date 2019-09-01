@@ -22,6 +22,12 @@ cns_deactivate_religion_heads = {
 	}
 }
 
+cns_set_historically_pluralist_flags = {
+	e_persia = { set_flag = historically_pluralist_empire }
+	e_india = { set_flag = historically_pluralist_empire }
+	e_roman_empire = { set_flag = historically_pluralist_empire }  # Bit of a stretch, but mostly intended for Cosmopolitan Hellenism.
+}
+
 cns_ruler_change_government_to_clergyless = {
 	if = {
 		limit = {
