@@ -2,7 +2,7 @@
 
 A game mod for Crusader Kings II. Only includes text files; the full version must be downloaded on the [Steam Workshop][Steam]. Feel free to [contribute](#modding)!
 
-[Steam]: https://steamcommunity.com
+[Steam]: https://steamcommunity.com/sharedfiles/filedetails/?id=1850863172
 
 
 ## Features
@@ -21,7 +21,7 @@ Non-clericalism affects religious heads in the following ways:
 
 ### Non-Clerical Governments
 
-These governments use a separate compatibility mechanic from vanilla, defined with [scripted triggers](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies (except Isrealite ones for the King of Israel).
+These governments use a separate compatibility mechanic from vanilla, defined with [scripted triggers](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies.
 
 Infidel taxes prevent Cosmopolitan religions from using Secular (instead of Pious) Feudal. They still have access to the "true" Pluralist governments.
 
