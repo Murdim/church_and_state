@@ -15,29 +15,33 @@ The following religions are [flagged as clergyless](common/scripted_effects/CNS_
 
 Non-clericalism affects religious heads in the following ways:
 
- - Reformed with Non-Clerical: if combined with Autocephalous, the "true" RH title is disabled. No change otherwise.
- - Randomized with Non-Clerical: if the RH title is held by a theocracy, it is destroyed and disabled. No change otherwise.
+ - Reformed with Non-Clerical: if combined with Autocephalous, "true" RH title is disabled. No change otherwise.
+ - Randomized with Non-Clerical: RH title is destroyed and disabled if held by a theocracy. No change otherwise.
  - Tagged as clergyless: no change, the RH title must be destroyed and/or disabled manually if needed.
 
 ### Non-Clerical Governments
 
-These governments do not use the vanilla compatibility mechanic (`vassal_government_opinion_penalties = no`), but a separate one, defined in [`CNS_government_opinion_triggers.txt`](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies (except Isrealite ones for the King of Israel).
+These governments use a separate compatibility mechanic from vanilla, defined in [`CNS_government_opinion_triggers.txt`](common/scripted_triggers/CNS_government_opinion_triggers.txt) and refreshed every 30 days. They are accepted by non-Order feudal vassals, and tribal vassals of the same culture, but not theocracies (except Isrealite ones for the King of Israel).
 
 Infidel taxes prevent Cosmopolitan religions from using Secular (instead of Pious) Feudal. They still have access to the "true" Pluralist governments.
 
 Baron-tier temple holders not from a significant dynasty (Count+ or patrician head) are not treated as "proper" feudal lords (yet). They actually use a separate version of Pious Feudal, made to look almost identical to the playable one:
 
  - Uses special titles, like Pastor or Rabbi.
- - Open Elective succession, tweaked to only include scripturally learned courtiers. Gender law is based on the religion's rules.
+ - Open Elective succession, tweaked to only include scripturally learned courtiers. Gender law based on religion.
  - Randomly generated rulers are lowborn, with the Guardian of Scripture trait if available.
 
 ### Pluralist Governments
 
-Pluralist Feudal uses the same government compatibility mechanic as Pious and Secular Feudal, with the same rules as vanilla Feudal.
+Pluralist Feudal uses the same compatibility mechanic as Pious and Secular Feudal, with the same rules as vanilla Feudal.
 
 The additional "Imperial" features are: no wrong government penalty, can hold Cities, free vassal retraction, +10 vassal limit, +15 court size (up from +10), +1 piety/month, can change capital every 200 months (down from 600).
 
-Adopting Pluralist Imperialism is fairly easy if the primary title has been Pluralist Imperial within the past 100 years. Otherwise, it has both administrative (tied with Prestige) and religious (tied with Piety) prerequisites. It can also be obtained by inheritance; if the heir is not already Cosmopolitan, they will be asked to convert. In all three cases, ALL held empires will be flagged as pluralist.
+Adopting Pluralist Imperialism is fairly easy if the primary title has been Pluralist Imperial within the past 100 years. Otherwise, it has both administrative (tied to Prestige) and religious (tied to Piety) prerequisites.
+
+It can also be obtained by inheritance; if the heir is not already Cosmopolitan, they will be asked to convert.
+
+In all three cases, ALL held empires will be flagged as pluralist, as well as any obtained after that.
 
 The Roman, Persian and Indian empires are flagged as "historically pluralist" at the beginning of a campaign, making the decision somewhat easier to take with them as primary title.
 
@@ -45,7 +49,7 @@ The Roman, Persian and Indian empires are flagged as "historically pluralist" at
 
 Requires Conclave and Holy Fury (for the doctrine), available to Duke+ feudal or republican rulers. This bonus advisor is intended to compensate for the inability to keep a powerful vassal placated as Court Chaplain. As such, it does not depend on the ruler himself using a non-clerical government type.
 
-To be considered "authoritative", a character must be an adult of the right sex and rule a theocracy OR have a Learning-based education or lifestyle or Hafiz/Guardian. Ascetics and characters flagged as "special spiritual" bypass these restrictions.
+To be considered "authoritative", a character must be an adult of the right sex and rule a theocracy OR have a Learning-based education or lifestyle or Hafiz/Guardian. Ascetics and "special spirituals" bypass these restrictions.
 
  - Delegate (Cosmopolitan): authoritative and/or landed adult + different religion. Can be recruited by decision. TODO
  - Peacemaker (Peaceful): authoritative + same religion. TODO
@@ -63,7 +67,10 @@ In addition to conversion, the trait and modifiers are removed and re-applied on
 
 This mod was developed for Crusader Kings 2 v3.2.1, and should remain compatible with future versions.
 
-It should also be compatible with most other mods.
+It should also be compatible with most other mods, with the following caveats:
+
+ - Mods that rely on landed priests may work poorly with Non-Clerical religions. Follow the instructions in [this file](common/scripted_triggers/CNS_religion_feature_triggers.txt) to prevent incompatibilites.
+ - New government types may conflict with those from this mod. This should be fixed with a compatibility patch to the government maintenance [events](events/CNS_maintenance_events) and [effects](common/scripted_effects/CNS_maintenance_effects).
 
 ### CK2 Overrides
 
