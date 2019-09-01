@@ -1,4 +1,4 @@
-# Church and State: Non-Clerical and Pluralist Governments
+# Church and State: Lay and Pluralist Religions
 
 A game mod for Crusader Kings II. Only includes text files; the full version must be downloaded on the [Steam Workshop][Steam]. Feel free to [contribute](#modding)!
 

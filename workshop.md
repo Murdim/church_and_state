@@ -1,4 +1,4 @@
-# Church and State: Non-Clerical and Pluralist Governments
+# Church and State: Lay and Pluralist religions
 
 **Adds new government types with features that are Iqta-like and/or encourage religious pluralism**
 
