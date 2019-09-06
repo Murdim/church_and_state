@@ -58,9 +58,15 @@ To be considered "authoritative", a character must be an adult of the right sex 
 
 ### Guardians of Scripture
 
-All versions of Hafiz/Guardian uses the vanilla Hafiz trait. The additional effects are implemented with hidden modifiers.
+If the feature is active, in addition to the standard +5 Muslim opinion, the Hafiz/Guardian trait also grants +2 Learning, +5 same religion opinion, and:
 
-In addition to conversion, the trait and modifiers are removed and re-applied on title gain and game load, when the game actually checks for the trait's "potential" trigger and remove it from non-Muslims. There might be other occasions where it does so; please warn me if you notice someone losing the trait for no apparent reason (a reload SHOULD fix it).
+ - For Muslims, +0.5 piety/month
+ - For Christians and Israelites, +5 religion group opinion
+ - For others, including all random-named religions, +10 religion opinion (up frop +5)
+
+All versions use the vanilla Hafiz trait. The new effects are implemented with hidden modifiers.
+
+The trait and modifiers are removed and re-applied on title gain and game load, when the game actually checks for the trait's "potential" trigger and remove it from non-Muslims. There might be other occasions where it does so; please warn me if you notice someone losing the trait for no apparent reason (a reload SHOULD fix it).
 
 
 ## Compatibility

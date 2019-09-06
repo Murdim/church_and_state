@@ -6,7 +6,7 @@ This mod provides the following **game rules**:
 
  - Non-clerical governments can be enabled for a list of religions, by doctrine, or both.
  - The Pluralist Feudal and Imperial governments can be enabled for Cosmopolitan religions.
- - Hafiz-like traits can be enabled for clergyless religions or all religions.
+ - Hafiz-like trait can be enabled for clergyless religions or all religions.
 
 ***Localised in English and French.***
 
@@ -43,11 +43,7 @@ New events will be added in the future for each type of advisor.
 
 ## Guardians of Scripture
 
-The Hafiz trait is now available to non-Muslim religions, renamed as "Guardian of [Religion's scripture]". Its effects have also been improved:
-
- - For Muslims, +5 religion opinion and +0.5 piety/month
- - For Christians and Israelites, +5 religion and +5 group opinion
- - For others, including all randomly renamed religions, +10 religion opinion
+The Hafiz trait is now available to non-Muslim religions, renamed as "Guardian of [Religion's scripture]". Its effects have also been improved.
 
 By default, this feature is enabled for **clergyless religions**, including randomized Muslims.
 
